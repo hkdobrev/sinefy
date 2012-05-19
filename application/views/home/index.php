@@ -7,8 +7,8 @@
 		<?php $movies_users = $movies_users->find_all();
 		foreach($movies_users as $movies_user):?>
 		<li class="poster">
-			<a class="movie-poster" data-movie="<?php $movie->pk()?>">
-				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=square')?>
+			<a class="movie-poster" data-movie="<?php $movies_user->movie->pk()?>">
+				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=large')?>
 			</a>
 			<?php //$watched = $movie->users->watched()->find_all();
 			if (FALSE AND $watched->count()):?>
@@ -37,20 +37,16 @@
 	<?php endif; ?>      
 	</div>
 
-  <div class="span3">
+	<div class="span3">
+
 		<div class="sidebar">
 			<?php if ($current_user AND $current_user->loaded()):?>     
 				<h3>Click on a movie to see details</h3>
-				<?php foreach ($movies_users->rewind() as $movies_user):
-				$movie = $movies_user->movie;?>
-				<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
-
-          <h2>Avengers</h2>
-
-          <img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" />
-
-				</div>
-				<?php endforeach?>
+					<?php foreach ($movies_users->rewind() as $movies_user):
+					$movie = $movies_user->movie;?>
+					<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
+					</div>
+					<?php endforeach?>
 			<?php else: ?>
 				<h3>Sign in and you will be able to:</h3>
 			<?php endif; ?>

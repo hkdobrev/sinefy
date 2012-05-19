@@ -10,7 +10,8 @@ class Controller_Home extends Controller_Layout {
 				'movies_users' => ORM::factory('movies_user')
 					->where('movies_user.user_id', '=', $this->current_user->pk())
 					->with('movie')
-					->order_by('movies_user.ranking')
+					->order_by('movies_user.ranking'),
+				'friends' => Auth::instance()->facebook()->api('/me/friends')
 			);
 		}
 	}
