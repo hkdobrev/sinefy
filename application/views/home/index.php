@@ -39,15 +39,25 @@
 
   <div class="span3">
 		<div class="sidebar">
-			<?php if ($current_user AND $current_user->loaded()):?>     
-				<h3>Click on a movie to see details</h3>
+
+
+          
+      <a class="thumbnail" data-toggle="trailer" href="#trailer"><img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" /></a>
+			
+      <?php if ($current_user AND $current_user->loaded()):?>    
 				<?php foreach ($movies_users->rewind() as $movies_user):
 				$movie = $movies_user->movie;?>
 				<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
 
-          <h2>Avengers</h2>
+          <h2><?php echo $movie->title; ?></h2>
 
-          <img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" />
+          <p><strong>About:</strong> <?php echo $movie->about; ?></p>
+
+          <p><strong>Release date:</strong> <?php echo $movie->release_date; ?></p>
+
+          <p><strong>Studio:</strong> <?php echo $movie->studio; ?></p>
+
+          <p><strong>Likes on facebook:</strong> <?php echo $movie->likes; ?></p>
 
 				</div>
 				<?php endforeach?>
@@ -57,4 +67,19 @@
 		</div>
 	</div>
 
+</div>
+
+
+<div class="modal hide fade" id="trailer">
+  <div class="modal-header">
+    <button class="close" data-dismiss="trailer">×</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p>One fine body…</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
 </div>
