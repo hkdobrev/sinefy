@@ -45,9 +45,9 @@ $config =  array(
 			 * Ports and sockets may be appended to the hostname.
 			 */
 			'hostname'   => 'localhost',
-			'database'   => 'pnikolov_movies',
-			'username'   => 'pnikolov_movies',
-			'password'   => '4d4PqZlMgVrJU37',
+			'database'   => 'movies',
+			'username'   => 'root',
+			'password'   => '',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',
