@@ -101,3 +101,8 @@ ul#posters, ul#posters > li {
   padding: 0;
   font-size: 80%;
 }
+
+.trailer-preview {
+	vertical-align: middle;
+	width: 200px;
+}
