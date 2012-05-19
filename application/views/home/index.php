@@ -1,28 +1,23 @@
 <?php defined('SYSPATH') OR die('No direct script access.');?>
 
+<div class="row-fluid">
+  <div class="span9">
+      <?php if ($current_user AND $current_user->loaded()):?> 
+        <!-- grid -->   
+       <?php else: ?>
+         <h1>Want to watch a movie?</h1>
+         <div class="fb-login-button" data-scope="email,user_likes,friends_likes" data-show-faces="true" data-width="200" data-max-rows="1"></div>
+      <?php endif; ?>      
+  </div>
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><?php echo HTML::anchor(Route::url('login'), 'Sign in', array('class' => 'btn btn-primary btn-large'))?></p>
-      </div>
+  <div class="span3">
+    <div class="sidebar">
+      <?php if ($current_user AND $current_user->loaded()):?>     
+        <h3>Click on a movie to see details</h3>
+      <?php else: ?>
+        <h3>Sign in and you will be able to:</h3>
+      <?php endif; ?>
+    </div>
+  </div>
 
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="span4">
-          <h2>Heading</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-        <div class="span4">
-          <h2>Heading</h2>
-           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-       </div>
-        <div class="span4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn" href="#">View details &raquo;</a></p>
-        </div>
-      </div>
+</div>
