@@ -40,19 +40,22 @@
 	<div class="span3">
 
 		<div class="sidebar">
-          
-      <a class="thumbnail" data-toggle="trailer" href="#trailer"><img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" /></a>
-			
+      <h3>Click on a movie</h3>
       <?php if ($current_user AND $current_user->loaded()):?>    
 				<?php foreach ($movies_users->rewind() as $movies_user):
 				$movie = $movies_user->movie;?>
 				<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
 
-          <h2><?php echo $movie->name; ?></h2>
+            <h2><?php echo $movie->name; ?></h2>
 
-          <p><strong>About:</strong> <?php echo $movie->about; ?></p>
+            <a class="thumbnail" data-toggle="trailer" href="#trailer" class="margin-top: 20px"><img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" /></a>
+        
+            <p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 70, '.') : ""; ?></p>
+          
+            <a href="#" class="btn" style="width:100px">Watched</a>
+            <a href="#" class="btn" style="width:100px">To Watch</a>
 
-				</div>
+        </div>
 				<?php endforeach?>
 			<?php else: ?>
 				<h3>Sign in and you will be able to:</h3>
