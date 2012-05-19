@@ -16,18 +16,15 @@
 </head>
 <body>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
-	
-	<?php echo $header;?>
-
 	<div class="container">
+		<?php echo $header;?>
+		<?php echo $content;?>
 
-	  <?php echo $content;?>
+		<hr>
 
-	  <hr>
-
-	  <footer>
+		<footer>
 		<p>&copy; Company 2012</p>
-	  </footer>
+		</footer>
 
 	</div> <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
@@ -35,3 +32,4 @@
 <?php echo View::factory('assets/body')?>
 </body>
 </html>
+
