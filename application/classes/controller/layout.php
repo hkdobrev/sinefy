@@ -39,7 +39,7 @@ class Controller_Layout extends Controller_Template {
 	public function after()
 	{
 		$view = View::factory($this->view, (array) $this->view_data);
-		if ($this->request->is_initial() AND ! $this->request->is_ajax())
+		if ($this->auto_render !== FALSE AND $this->request->is_initial() AND ! $this->request->is_ajax())
 		{
 			$this->template->content = $view;
 			$this->template->title = str_replace(array(
@@ -53,6 +53,7 @@ class Controller_Layout extends Controller_Template {
 				Inflector::humanize($this->request->action()),
 				Kohana::$config->load('app.title')
 			), $this->title_template);
+			$this->template->header = View::factory('header');
 		}
 		else
 		{
