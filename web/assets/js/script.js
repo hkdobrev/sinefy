@@ -2,7 +2,6 @@ var videoIdParam;
 var player;
 var done = false;
 
-/*
 (function (window, $){
 
 	$(function(){
@@ -16,7 +15,6 @@ var done = false;
 		});
 	});
 }(window, window.jQuery));
-*/
 
 var ext;
 
