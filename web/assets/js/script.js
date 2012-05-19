@@ -2,6 +2,7 @@ var videoIdParam;
 var player;
 var done = false;
 
+/*
 (function (window, $){
 
 	$(function(){
@@ -15,6 +16,7 @@ var done = false;
 		});
 	});
 }(window, window.jQuery));
+*/
 
 var ext;
 
@@ -66,7 +68,6 @@ function getVideo(name) {
 	    dataType: "jsonp",
 	    success: function (obj) {
 	    	vid = showVideoList(obj);
-			console.log("bla: " + vid);
 			player = new YT.Player('player', {
 			    height: '390',
 			    width: '640',
