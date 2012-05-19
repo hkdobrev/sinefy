@@ -4,7 +4,8 @@ class Model_Movie extends ORM {
 	protected $_has_many = array(
 		'users'	=> array(
 			'through' => 'movies_user'
-		)
+		),
+		'movies_users' => array()
 	);
 
 	public function watched()
