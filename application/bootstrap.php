@@ -111,6 +111,7 @@ Kohana::modules(array(
 	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
 	'timestamped-migrations'  => MODPATH.'timestamped-migrations',  // Rails-liek migrations
 	'kohana-cli'  => MODPATH.'kohana-cli',  // User guide and API documentation
+	'asset-merger' => MODPATH.'asset-merger', // Merging assets and stuff
 	));
 
 

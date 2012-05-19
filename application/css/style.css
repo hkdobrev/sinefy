@@ -1,18 +1,55 @@
+.wall-entry {
+	margin-top: 20px;
+	clear: both;
+}
 
+.post-thumb {
+	vertical-align: middle;
+	width: 90px;
+	margin-right: 10px;
+	float: left;
+}
 
-/* ===== Primary Styles ========================================================
-   Author:
-   ========================================================================== */
+.feed-thumb {
+	vertical-align: middle;
+	width: 120px;
+}
 
+.feed-thumb-float {
+	float: left;
+	margin-right: 10px;
 
+}
 
+.connecting-word {
+	float: left;
+	font-size: 30px;
+	line-height: 36px;
+}
 
+.header {
+	height: 100px;
+}
 
+.clear {
+	clear: both;
+}
 
+.movie-previewer {
+	margin-top: 30px;
+}
 
+.movie-previewer .item {
+	padding-left: 120px;
 
+}
 
+.movie-preview-heading {
+	text-align: center;
+	margin-top: 40px;
+}
 
-
-
-
+.navbar-inner {
+	overflow: hidden;
+	height: 40px;
+}
