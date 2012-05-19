@@ -3,7 +3,8 @@
 $assets = Assets::factory('body')
 	->js('libs/bootstrap/bootstrap.min.js')
 	->js('plugins.js')
-	->js('script.js');
+	->js('script.js')
+	->js('libs/jquery.masonry.min.js');
 
 	if ($ga_key = Kohana::$config->load('analytics.google.key'))
 	{
