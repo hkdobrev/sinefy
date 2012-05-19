@@ -80,7 +80,7 @@ ul#posters, ul#posters > li {
 
 #posters li.poster {
   float: left;
-  width: 171px;
+  width: 170px;
   margin-bottom: 6px;
   list-style: none;
   background-color: #fff;

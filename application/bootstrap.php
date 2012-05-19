@@ -112,6 +112,7 @@ Kohana::modules(array(
 	'timestamped-migrations'  => MODPATH.'timestamped-migrations',  // Rails-liek migrations
 	'kohana-cli'  => MODPATH.'kohana-cli',  // User guide and API documentation
 	'asset-merger' => MODPATH.'asset-merger', // Merging assets and stuff
+	'pagination' => MODPATH.'pagination', // Merging assets and stuff
 	));
 
 
@@ -149,6 +150,14 @@ Route::set('logout', 'logout')
 	->defaults(array(
 		'controller' => 'session',
 		'action' => 'delete'
+	));
+
+Route::set('home', '(<page>)', array(
+	'page' => '[1-9][0-9]*'
+))
+	->defaults(array(
+		'controller' => 'home',
+		'action' => 'index'
 	));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')

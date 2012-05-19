@@ -31,6 +31,7 @@
 		</li>
 		<?php endforeach?>
 		</ul>
+		<?php echo $pagination?>
 	 <?php else: ?>
 		 <h1>Want to watch a movie?</h1>
 		 <div class="fb-login-button" data-scope="email,user_likes,friends_likes" data-show-faces="true" data-width="200" data-max-rows="1"></div>
