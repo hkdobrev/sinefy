@@ -526,3 +526,384 @@
 #1 C:\xampp\htdocs\Movies\Movies\system\classes\kohana\request.php(1138): Kohana_Request_Client->execute(Object(Request))
 #2 C:\xampp\htdocs\Movies\Movies\web\index.php(109): Kohana_Request->execute()
 #3 {main}
+2012-05-19 11:52:43 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:52:43 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:52:43 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:52:43 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:52:43 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:52:43 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:52:43 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:52:43 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:52:43 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:52:43 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:53:30 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:53:30 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:53:31 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:53:31 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:53:31 --- ERROR: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+2012-05-19 11:53:31 --- STRACE: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+--
+#0 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(171): Kohana_Database_MySQL->connect()
+#1 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(360): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#2 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(1504): Kohana_Database_MySQL->list_columns('users')
+#3 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(392): Kohana_ORM->list_columns(true)
+#4 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(337): Kohana_ORM->reload_columns()
+#5 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(246): Kohana_ORM->_initialize()
+#6 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(37): Kohana_ORM->__construct(Array)
+#7 /home/hkdobrev/Projects/movies/application/classes/auth/facebook.php(20): Kohana_ORM::factory('user', Array)
+#8 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(29): Auth_Facebook->get_user()
+#9 [internal function]: Controller_Layout->before()
+#10 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(103): ReflectionMethod->invoke(Object(Controller_Session))
+#11 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#12 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#13 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#14 {main}
+2012-05-19 11:53:31 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:53:31 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:53:37 --- ERROR: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+2012-05-19 11:53:37 --- STRACE: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+--
+#0 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(171): Kohana_Database_MySQL->connect()
+#1 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(360): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#2 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(1504): Kohana_Database_MySQL->list_columns('users')
+#3 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(392): Kohana_ORM->list_columns(true)
+#4 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(337): Kohana_ORM->reload_columns()
+#5 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(246): Kohana_ORM->_initialize()
+#6 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(37): Kohana_ORM->__construct(Array)
+#7 /home/hkdobrev/Projects/movies/application/classes/auth/facebook.php(20): Kohana_ORM::factory('user', Array)
+#8 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(29): Auth_Facebook->get_user()
+#9 [internal function]: Controller_Layout->before()
+#10 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(103): ReflectionMethod->invoke(Object(Controller_Home))
+#11 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#12 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#13 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#14 {main}
+2012-05-19 11:53:37 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:53:37 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:53:38 --- ERROR: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+2012-05-19 11:53:38 --- STRACE: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+--
+#0 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(171): Kohana_Database_MySQL->connect()
+#1 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(360): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#2 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(1504): Kohana_Database_MySQL->list_columns('users')
+#3 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(392): Kohana_ORM->list_columns(true)
+#4 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(337): Kohana_ORM->reload_columns()
+#5 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(246): Kohana_ORM->_initialize()
+#6 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(37): Kohana_ORM->__construct(Array)
+#7 /home/hkdobrev/Projects/movies/application/classes/auth/facebook.php(20): Kohana_ORM::factory('user', Array)
+#8 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(29): Auth_Facebook->get_user()
+#9 [internal function]: Controller_Layout->before()
+#10 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(103): ReflectionMethod->invoke(Object(Controller_Home))
+#11 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#12 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#13 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#14 {main}
+2012-05-19 11:53:39 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:53:39 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:56:15 --- ERROR: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+2012-05-19 11:56:15 --- STRACE: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+--
+#0 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(171): Kohana_Database_MySQL->connect()
+#1 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(360): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#2 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(1504): Kohana_Database_MySQL->list_columns('users')
+#3 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(392): Kohana_ORM->list_columns(true)
+#4 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(337): Kohana_ORM->reload_columns()
+#5 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(246): Kohana_ORM->_initialize()
+#6 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(37): Kohana_ORM->__construct(Array)
+#7 /home/hkdobrev/Projects/movies/application/classes/auth/facebook.php(20): Kohana_ORM::factory('user', Array)
+#8 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(29): Auth_Facebook->get_user()
+#9 [internal function]: Controller_Layout->before()
+#10 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(103): ReflectionMethod->invoke(Object(Controller_Home))
+#11 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#12 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#13 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#14 {main}
+2012-05-19 11:56:15 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:56:15 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:56:16 --- ERROR: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+2012-05-19 11:56:16 --- STRACE: Database_Exception [ 2 ]: mysql_connect(): Access denied for user 'root'@'localhost' (using password: NO) ~ MODPATH/database/classes/kohana/database/mysql.php [ 67 ]
+--
+#0 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(171): Kohana_Database_MySQL->connect()
+#1 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/mysql.php(360): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#2 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(1504): Kohana_Database_MySQL->list_columns('users')
+#3 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(392): Kohana_ORM->list_columns(true)
+#4 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(337): Kohana_ORM->reload_columns()
+#5 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(246): Kohana_ORM->_initialize()
+#6 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(37): Kohana_ORM->__construct(Array)
+#7 /home/hkdobrev/Projects/movies/application/classes/auth/facebook.php(20): Kohana_ORM::factory('user', Array)
+#8 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(29): Auth_Facebook->get_user()
+#9 [internal function]: Controller_Layout->before()
+#10 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(103): ReflectionMethod->invoke(Object(Controller_Home))
+#11 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#12 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#13 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#14 {main}
+2012-05-19 11:56:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:56:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:56:39 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 11:56:39 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 11:56:39 --- ERROR: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+2012-05-19 11:56:39 --- STRACE: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+--
+#0 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(137): Kohana_View->set_filename('session/new')
+#1 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(30): Kohana_View->__construct('session/new', Array)
+#2 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(39): Kohana_View::factory('session/new', Array)
+#3 [internal function]: Controller_Layout->after()
+#4 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(121): ReflectionMethod->invoke(Object(Controller_Session))
+#5 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#7 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#8 {main}
+2012-05-19 12:16:39 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 12:16:39 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 12:16:39 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 12:16:39 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 12:31:52 --- ERROR: ErrorException [ 8 ]: Undefined variable: movie ~ APPPATH/views/home/index.php [ 8 ]
+2012-05-19 12:31:52 --- STRACE: ErrorException [ 8 ]: Undefined variable: movie ~ APPPATH/views/home/index.php [ 8 ]
+--
+#0 /home/hkdobrev/Projects/movies/application/views/home/index.php(8): Kohana_Core::error_handler(8, 'Undefined varia...', '/home/hkdobrev/...', 8, Array)
+#1 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(61): include('/home/hkdobrev/...')
+#2 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(343): Kohana_View::capture('/home/hkdobrev/...', Array)
+#3 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(228): Kohana_View->render()
+#4 /home/hkdobrev/Projects/movies/application/views/layout.php(21): Kohana_View->__toString()
+#5 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(61): include('/home/hkdobrev/...')
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(343): Kohana_View::capture('/home/hkdobrev/...', Array)
+#7 /home/hkdobrev/Projects/movies/system/classes/kohana/controller/template.php(44): Kohana_View->render()
+#8 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(61): Kohana_Controller_Template->after()
+#9 [internal function]: Controller_Layout->after()
+#10 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(121): ReflectionMethod->invoke(Object(Controller_Home))
+#11 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#12 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#13 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#14 {main}
+2012-05-19 12:31:53 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 12:31:53 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 12:32:25 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 12:32:25 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:28:24 --- ERROR: FacebookApiException [ 0 ]: An active access token must be used to query information about the current user. ~ APPPATH/vendor/facebook-php-sdk/base_facebook.php [ 1106 ]
+2012-05-19 13:28:24 --- STRACE: FacebookApiException [ 0 ]: An active access token must be used to query information about the current user. ~ APPPATH/vendor/facebook-php-sdk/base_facebook.php [ 1106 ]
+--
+#0 /home/hkdobrev/Projects/movies/application/vendor/facebook-php-sdk/base_facebook.php(810): BaseFacebook->throwAPIException(Array)
+#1 [internal function]: BaseFacebook->_graph('/me')
+#2 /home/hkdobrev/Projects/movies/application/vendor/facebook-php-sdk/base_facebook.php(587): call_user_func_array(Array, Array)
+#3 /home/hkdobrev/Projects/movies/application/classes/auth/facebook.php(29): BaseFacebook->api('/me')
+#4 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(29): Auth_Facebook->get_user()
+#5 [internal function]: Controller_Layout->before()
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(103): ReflectionMethod->invoke(Object(Controller_Home))
+#7 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#8 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#9 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#10 {main}
+2012-05-19 13:28:25 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:28:25 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:38 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:38 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:38 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:38 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:38 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:38 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:38 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:38 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:39 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:39 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:39 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:39 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:39 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:39 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:40 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:40 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:33:42 --- ERROR: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+2012-05-19 13:33:42 --- STRACE: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+--
+#0 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(137): Kohana_View->set_filename('session/new')
+#1 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(30): Kohana_View->__construct('session/new', Array)
+#2 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(39): Kohana_View::factory('session/new', Array)
+#3 [internal function]: Controller_Layout->after()
+#4 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(121): ReflectionMethod->invoke(Object(Controller_Session))
+#5 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#7 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#8 {main}
+2012-05-19 13:33:42 --- ERROR: Database_Exception [ 1054 ]: Unknown column 'movies_users.ranking' in 'order clause' [ SELECT `movie`.`id` AS `movie:id`, `movie`.`name` AS `movie:name`, `movie`.`about` AS `movie:about`, `movie`.`image` AS `movie:image`, `movie`.`actors` AS `movie:actors`, `movie`.`release_date` AS `movie:release_date`, `movie`.`directed_by` AS `movie:directed_by`, `movie`.`studio` AS `movie:studio`, `movie`.`likes` AS `movie:likes`, `movie`.`facebook_id` AS `movie:facebook_id`, `movies_user`.* FROM `movies_users` AS `movies_user` LEFT JOIN `movies` AS `movie` ON (`movie`.`id` = `movies_user`.`movie_id`) WHERE `movies_user`.`user_id` = '2' ORDER BY `movies_users`.`ranking` ] ~ MODPATH/database/classes/kohana/database/mysql.php [ 194 ]
+2012-05-19 13:33:42 --- STRACE: Database_Exception [ 1054 ]: Unknown column 'movies_users.ranking' in 'order clause' [ SELECT `movie`.`id` AS `movie:id`, `movie`.`name` AS `movie:name`, `movie`.`about` AS `movie:about`, `movie`.`image` AS `movie:image`, `movie`.`actors` AS `movie:actors`, `movie`.`release_date` AS `movie:release_date`, `movie`.`directed_by` AS `movie:directed_by`, `movie`.`studio` AS `movie:studio`, `movie`.`likes` AS `movie:likes`, `movie`.`facebook_id` AS `movie:facebook_id`, `movies_user`.* FROM `movies_users` AS `movies_user` LEFT JOIN `movies` AS `movie` ON (`movie`.`id` = `movies_user`.`movie_id`) WHERE `movies_user`.`user_id` = '2' ORDER BY `movies_users`.`ranking` ] ~ MODPATH/database/classes/kohana/database/mysql.php [ 194 ]
+--
+#0 /home/hkdobrev/Projects/movies/modules/database/classes/kohana/database/query.php(245): Kohana_Database_MySQL->query(1, 'SELECT `movie`....', 'Model_Movies_Us...', Array)
+#1 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(963): Kohana_Database_Query->execute(Object(Database_MySQL))
+#2 /home/hkdobrev/Projects/movies/modules/orm/classes/kohana/orm.php(922): Kohana_ORM->_load_result(true)
+#3 /home/hkdobrev/Projects/movies/application/views/home/index.php(7): Kohana_ORM->find_all()
+#4 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(61): include('/home/hkdobrev/...')
+#5 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(343): Kohana_View::capture('/home/hkdobrev/...', Array)
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(228): Kohana_View->render()
+#7 /home/hkdobrev/Projects/movies/application/views/layout.php(21): Kohana_View->__toString()
+#8 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(61): include('/home/hkdobrev/...')
+#9 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(343): Kohana_View::capture('/home/hkdobrev/...', Array)
+#10 /home/hkdobrev/Projects/movies/system/classes/kohana/controller/template.php(44): Kohana_View->render()
+#11 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(61): Kohana_Controller_Template->after()
+#12 [internal function]: Controller_Layout->after()
+#13 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(121): ReflectionMethod->invoke(Object(Controller_Home))
+#14 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#15 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#16 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#17 {main}
+2012-05-19 13:33:43 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:33:43 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:34:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:34:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:34:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:34:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:34:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:34:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:34:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:34:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:34:18 --- ERROR: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+2012-05-19 13:34:18 --- STRACE: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+--
+#0 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(137): Kohana_View->set_filename('session/new')
+#1 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(30): Kohana_View->__construct('session/new', Array)
+#2 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(39): Kohana_View::factory('session/new', Array)
+#3 [internal function]: Controller_Layout->after()
+#4 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(121): ReflectionMethod->invoke(Object(Controller_Session))
+#5 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#7 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#8 {main}
+2012-05-19 13:42:07 --- ERROR: ErrorException [ 1 ]: Call to undefined method Database_MySQL_Result::find_all() ~ APPPATH/views/home/index.php [ 8 ]
+2012-05-19 13:42:07 --- STRACE: ErrorException [ 1 ]: Call to undefined method Database_MySQL_Result::find_all() ~ APPPATH/views/home/index.php [ 8 ]
+--
+#0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main}
+2012-05-19 13:42:08 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:42:08 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:42:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:42:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:42:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:42:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:42:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:42:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:42:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:42:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:42:17 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:42:17 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:42:18 --- ERROR: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+2012-05-19 13:42:18 --- STRACE: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+--
+#0 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(137): Kohana_View->set_filename('session/new')
+#1 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(30): Kohana_View->__construct('session/new', Array)
+#2 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(39): Kohana_View::factory('session/new', Array)
+#3 [internal function]: Controller_Layout->after()
+#4 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(121): ReflectionMethod->invoke(Object(Controller_Session))
+#5 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#7 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#8 {main}
