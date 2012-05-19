@@ -14,18 +14,11 @@
 	<meta name="viewport" content="width=device-width">
 	<?php echo View::factory('assets/head')?>
 </head>
-<body>
+<body<?php echo ($current_user AND $current_user->loaded()) ? ' class="logged-in"' : ''?>>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 	<div class="container">
 		<?php echo $header;?>
 		<?php echo $content;?>
-
-		<hr>
-
-		<footer>
-		<p>&copy; Company 2012</p>
-		</footer>
-
 	</div> <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.js"><\/script>')</script>
