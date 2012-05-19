@@ -7,7 +7,7 @@
 		<?php $movies_users = $movies_users->find_all();
 		foreach($movies_users as $movies_user):?>
 		<li class="poster">
-			<a class="movie-poster" data-movie="<?php $movies_user->movie->pk()?>">
+			<a class="movie-poster" data-movie="<?php echo $movies_user->movie->pk()?>">
 				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=large')?>
 			</a>
 			<?php //$watched = $movie->users->watched()->find_all();
