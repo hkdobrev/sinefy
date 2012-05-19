@@ -42,13 +42,11 @@
 		<div class="sidebar">
 			<?php if ($current_user AND $current_user->loaded()):?>     
 				<h3>Click on a movie to see details</h3>
-				<div class="hidden">
-					<?php foreach ($movies_users->rewind() as $movies_user):
-					$movie = $movies_user->movie;?>
-					<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
-					</div>
-					<?php endforeach?>
+				<?php foreach ($movies_users->rewind() as $movies_user):
+				$movie = $movies_user->movie;?>
+				<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
 				</div>
+				<?php endforeach?>
 			<?php else: ?>
 				<h3>Sign in and you will be able to:</h3>
 			<?php endif; ?>
