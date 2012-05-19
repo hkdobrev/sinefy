@@ -52,12 +52,6 @@
 
           <p><strong>About:</strong> <?php echo $movie->about; ?></p>
 
-          <p><strong>Release date:</strong> <?php echo $movie->release_date; ?></p>
-
-          <p><strong>Studio:</strong> <?php echo $movie->studio; ?></p>
-
-          <p><strong>Likes on facebook:</strong> <?php echo $movie->likes; ?></p>
-
 				</div>
 				<?php endforeach?>
 			<?php else: ?>
