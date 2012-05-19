@@ -24,16 +24,14 @@ class Controller_Layout extends Controller_Template {
 		$this->view = $this->request->controller().'/'.$this->request->action();
 
 		// login
-		
-		
-		
-		$this->current_user = Auth::instance()->get_user();
+		if (Route::name($this->request->route()) !== 'logout')
+		{
+			$this->current_user = Auth::instance()->get_user();
+		}
 
 		View::set_global('current_user', $this->current_user);
 		
 		// permissions
-		
-
 	}
 
 	public function after()
@@ -55,7 +53,7 @@ class Controller_Layout extends Controller_Template {
 			), $this->title_template);
 			$this->template->header = View::factory('header');
 		}
-		else
+		elseif($this->auto_render !== NULL)
 		{
 			$this->auto_render = FALSE;
 			$this->response->body($view);

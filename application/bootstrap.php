@@ -65,6 +65,10 @@ if (isset($_SERVER['KOHANA_ENV']))
 {
 	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
+else
+{
+	Kohana::$environment = Kohana::$is_cli ? Kohana::DEVELOPMENT : Kohana::PRODUCTION;
+}
 
 /**
  * Initialize Kohana, setting the default options.

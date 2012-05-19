@@ -14,7 +14,29 @@ class Auth_Facebook extends Auth_ORM {
 
 		if ( ! $user)
 		{
-			$user = $this->get_user_from_facebook();
+			$facebook_id = $this->facebook()->getUser();
+			if ($facebook_id)
+			{
+				$user = ORM::factory('user', array('facebook_id' => $facebook_id));
+				if ($user->loaded())
+				{
+					$this->force_login($user);
+					return $user;
+				}
+				else
+				{
+					$user = ORM::factory('user')
+						->populate_from_facebook($this->facebook()->api('/me'))
+						->save();
+
+					$this->force_login($user);
+					return $user;
+				}
+			}
+			else
+			{
+				$user = NULL;
+			}
 		}
 
 		return $user;
@@ -39,9 +61,10 @@ class Auth_Facebook extends Auth_ORM {
 		return $this->_facebook;
 	}
 
-	public function get_user_from_facebook()
+	public function logout($destroy = FALSE, $logout_all = FALSE)
 	{
-		return $this->facebook()->getUser();
+		parent::logout($destroy, $logout_all);
+		Request::initial()->redirect($this->facebook()->getLogoutUrl(array('next' => URL::site('/', TRUE))));
 	}
 
 }

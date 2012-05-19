@@ -5,7 +5,7 @@
       <div class="hero-unit">
         <h1>Hello, world!</h1>
         <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-large">Sign in</a></p>
+        <p><?php echo HTML::anchor(Route::url('login'), 'Sign in', array('class' => 'btn btn-primary btn-large'))?></p>
       </div>
 
       <!-- Example row of columns -->
