@@ -9,7 +9,7 @@ var done = false;
 		$container.imagesLoaded(function(){
 			$container.masonry({
 				itemSelector: 'li.poster',
-				columnWidth: 171,
+				columnWidth: 170,
 				gutterWidth: 5
 			});
 		});

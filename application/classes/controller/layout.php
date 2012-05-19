@@ -24,7 +24,7 @@ class Controller_Layout extends Controller_Template {
 		$this->view = $this->request->controller().'/'.$this->request->action();
 
 		// login
-		if (Route::name($this->request->route()) !== 'logout')
+		if ($this->request->controller() !== 'session')
 		{
 			$this->current_user = Auth::instance()->get_user();
 		}
@@ -36,7 +36,14 @@ class Controller_Layout extends Controller_Template {
 
 	public function after()
 	{
-		$view = View::factory($this->view, (array) $this->view_data);
+		if ($this->view)
+		{
+			$view = View::factory($this->view, (array) $this->view_data);
+		}
+		else
+		{
+			$view = '';
+		}
 		if ($this->auto_render !== FALSE AND $this->request->is_initial() AND ! $this->request->is_ajax())
 		{
 			$this->template->content = $view;
