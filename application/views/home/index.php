@@ -40,7 +40,7 @@
 
 	<div class="span3">
 
-		<div class="sidebar">
+		<div class="sidebar" style="position: fixed; width: 250px;">
       <h3>Click on a movie</h3>
       <?php if ($current_user AND $current_user->loaded()):?>    
 				<?php foreach ($movies_users->rewind() as $movies_user):
