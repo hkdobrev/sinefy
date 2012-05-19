@@ -35,18 +35,23 @@ class Controller_Parser extends Controller {
 
 				// echo "<pre>"; print_r($movie_data); die;
 
-				$new_movie = ORM::factory('movie')
-								->values(array(
-											'name' => Arr::get($movie_data, 'name'),
-											'about' => Arr::get($movie_data, 'description', Arr::get($movie_data, 'about')),
-											'starring' => Arr::get($movie_data, 'starring'),
-											'release_date' => Arr::get($movie_data, 'release_date'),
-											'directed_by' => Arr::get($movie_data, 'directed_by'),
-											'studio' => Arr::get($movie_data, 'studio'),
-											'likes' => Arr::get($movie_data, 'likes'),
-											'id' => Arr::get($movie_data, 'id'),
-										))
-								->save();
+				$movie_check = ORM::factory('movie', array('facebook_id' => Arr::get($movie_data, 'id')))->loaded();
+
+				if (!$movie_check) 
+				{
+					$new_movie = ORM::factory('movie')
+									->values(array(
+												'name' => Arr::get($movie_data, 'name'),
+												'about' => Arr::get($movie_data, 'description', Arr::get($movie_data, 'about')),
+												'actors' => Arr::get($movie_data, 'starring'),
+												'release_date' => Arr::get($movie_data, 'release_date'),
+												'directed_by' => Arr::get($movie_data, 'directed_by'),
+												'studio' => Arr::get($movie_data, 'studio'),
+												'likes' => Arr::get($movie_data, 'likes'),
+												'facebook_id' => Arr::get($movie_data, 'id'),
+											))
+									->save();
+				}
 			}
 		}
 	}
