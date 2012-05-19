@@ -26,19 +26,31 @@
 
 		// Additional initialization code here
 		
-		FB.Event.subscribe( 'auth.statusChange', function( response ) {
-			if ( response.authResponse ) {
-				FB.api( '/me', function( me ) {
-					$.post('/login', {id: me.id, email: me.email}, function( data ) {
-						window.location.replace('/');
+		if ( ! $('body').hasClass('logged-in') ) {
+			console.log('sdfds');
+			FB.getLoginStatus(function( response ) {
+				if ( response.status === 'connected' ) {
+					$.post('/login', {id: response.authResponse.userID}, function( data ) {
+						if ( data.ok ) {
+							window.location.replace('/');
+						}
 					}, 'json');
-				});
-			}
-		});
+				} else {
+					FB.Event.subscribe( 'auth.statusChange', function( response ) {
+						if ( response.authResponse ) {
+							window.location.replace('/');
+						}
+					});
+				}
+			});
+		}
+
 
 		$(function() {
-			$( '#logout' ).on( 'click', function() {
+			$( '#logout' ).on( 'click', function(e) {
+				e.preventDefault();
 				FB.logout();
+				window.location.path = '/logout';
 			});
 		});
 	};

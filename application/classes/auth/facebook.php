@@ -72,11 +72,4 @@ class Auth_Facebook extends Auth_ORM {
 
 		return $this->_facebook;
 	}
-
-	public function logout($destroy = FALSE, $logout_all = FALSE)
-	{
-		parent::logout($destroy, $logout_all);
-		Request::initial()->redirect($this->facebook()->getLogoutUrl(array('next' => URL::site('/', TRUE))));
-	}
-
 }
