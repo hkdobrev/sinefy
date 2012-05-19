@@ -29,7 +29,9 @@
 		FB.Event.subscribe( 'auth.statusChange', function( response ) {
 			if ( response.authResponse ) {
 				FB.api( '/me', function( me ) {
-					log( me );
+					$.post('/login', {id: me.id, email: me.email}, function( data ) {
+						window.location.replace('/');
+					}, 'json');
 				});
 			}
 		});

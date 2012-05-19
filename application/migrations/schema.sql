@@ -35,6 +35,20 @@ CREATE TABLE `schema_version` (
   `version` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `user_tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_tokens` (
+  `id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `user_agent` varchar(255) DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `created` int(11) DEFAULT NULL,
+  `expires` int(11) DEFAULT NULL,
+  UNIQUE KEY `uniq_token` (`token`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -42,7 +56,11 @@ CREATE TABLE `users` (
   `id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `facebook_id` bigint(20) DEFAULT NULL
+  `facebook_id` bigint(20) DEFAULT NULL,
+  `logins` int(11) DEFAULT NULL,
+  `last_login` int(11) DEFAULT NULL,
+  UNIQUE KEY `uniq_email` (`email`),
+  UNIQUE KEY `uniq_fb` (`facebook_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

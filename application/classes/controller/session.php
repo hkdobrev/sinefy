@@ -4,12 +4,13 @@ class Controller_Session extends Controller_Layout {
 
 	public function action_new()
 	{
-		$this->title = 'Login / Signup';
+		$this->auto_render = NULL;
+		$user = Auth::instance()->get_user();
+		$this->response->body(json_encode(array('id' => $user->pk())));
 	}
 
 	public function action_delete()
 	{
 		Auth::instance()->logout();
-		$this->request->redirect();
 	}
 }
