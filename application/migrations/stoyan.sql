@@ -11,6 +11,7 @@ ALTER TABLE  `movies` ADD  `release_date` TIMESTAMP NULL AFTER  `actors` ,
 ADD  `directed_by` VARCHAR( 255 ) NULL AFTER  `release_date` ,
 ADD  `studio` VARCHAR( 255 ) NULL AFTER  `directed_by` ,
 ADD  `likes` INT NOT NULL DEFAULT  '0' AFTER  `studio`;
+ALTER TABLE `movies` DROP `image`;
 
 
 ALTER TABLE  `movies_users` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
