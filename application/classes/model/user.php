@@ -4,9 +4,14 @@ class Model_User extends Model_Auth_User {
 
 
 	protected $_has_many = array(
-		'user_tokens' => array('model' => 'user_token'),
+		'user_tokens' => array(
+			'model' => 'user_token'
+		),
 		'movies' => array(
 			'through' => 'movies_users'
+		),
+		'friends' => array(
+			'model' => 'friend'
 		)
 	);
 
