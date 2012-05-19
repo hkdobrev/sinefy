@@ -70,6 +70,10 @@ body {
   background-color: #f0f0f0;
 }
 
+ul#posters {
+	margin-left: 0px;
+}
+
 ul#posters, ul#posters > li {
   padding: 0;
 }
@@ -82,7 +86,7 @@ ul#posters, ul#posters > li {
   background-color: #fff;
 }
 
-#posters li.poster > img {
+#posters li.poster a img {
   width: 160px;
   display: block;
   margin: 5px auto;

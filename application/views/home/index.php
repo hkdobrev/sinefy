@@ -7,8 +7,8 @@
 		<?php $movies_users = $movies_users->find_all();
 		foreach($movies_users as $movies_user):?>
 		<li class="poster">
-			<a class="movie-poster" data-movie="<?php $movie->pk()?>">
-				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=square')?>
+			<a class="movie-poster" data-movie="<?php $movies_user->movie->pk()?>">
+				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=large')?>
 			</a>
 			<?php //$watched = $movie->users->watched()->find_all();
 			if (FALSE AND $watched->count()):?>
@@ -37,10 +37,9 @@
 	<?php endif; ?>      
 	</div>
 
-  <div class="span3">
+	<div class="span3">
+
 		<div class="sidebar">
-
-
           
       <a class="thumbnail" data-toggle="trailer" href="#trailer"><img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" /></a>
 			
@@ -49,7 +48,7 @@
 				$movie = $movies_user->movie;?>
 				<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
 
-          <h2><?php echo $movie->title; ?></h2>
+          <h2><?php echo $movie->name; ?></h2>
 
           <p><strong>About:</strong> <?php echo $movie->about; ?></p>
 
