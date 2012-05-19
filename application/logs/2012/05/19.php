@@ -907,3 +907,20 @@
 #6 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
 #7 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
 #8 {main}
+2012-05-19 13:46:32 --- ERROR: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+2012-05-19 13:46:32 --- STRACE: HTTP_Exception_404 [ 404 ]: Unable to find a route to match the URI: favicon.ico ~ SYSPATH/classes/kohana/request.php [ 1126 ]
+--
+#0 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#1 {main}
+2012-05-19 13:46:32 --- ERROR: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+2012-05-19 13:46:32 --- STRACE: View_Exception [ 0 ]: The requested view session/new could not be found ~ SYSPATH/classes/kohana/view.php [ 252 ]
+--
+#0 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(137): Kohana_View->set_filename('session/new')
+#1 /home/hkdobrev/Projects/movies/system/classes/kohana/view.php(30): Kohana_View->__construct('session/new', Array)
+#2 /home/hkdobrev/Projects/movies/application/classes/controller/layout.php(39): Kohana_View::factory('session/new', Array)
+#3 [internal function]: Controller_Layout->after()
+#4 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client/internal.php(121): ReflectionMethod->invoke(Object(Controller_Session))
+#5 /home/hkdobrev/Projects/movies/system/classes/kohana/request/client.php(64): Kohana_Request_Client_Internal->execute_request(Object(Request))
+#6 /home/hkdobrev/Projects/movies/system/classes/kohana/request.php(1138): Kohana_Request_Client->execute(Object(Request))
+#7 /home/hkdobrev/Projects/movies/web/index.php(109): Kohana_Request->execute()
+#8 {main}
