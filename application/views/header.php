@@ -3,6 +3,7 @@
 <div class="navbar">
 	<div class="navbar-inner">
 	  <div class="container">
+	  	<a class="brand" href="#">Sinefy</a>
 	    <div class="nav-collapse">
 	      <ul class="nav">
 	        <li class="active"><a href="#">Your Profile</a></li>
