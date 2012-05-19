@@ -19,8 +19,8 @@ $config =  array(
 			 */
 			'hostname'   => 'localhost',
 			'database'   => 'movies',
-			'username'   => 'movies',
-			'password'   => '80Pi00PXwMv3',
+			'username'   => 'root',
+			'password'   => '',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',
