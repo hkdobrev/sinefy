@@ -165,3 +165,14 @@ a.movie-poster:hover span {
 #infscr-loading img{
 	width: 100%;
 }
+
+.ui-widget-overlay {
+	background: #fff;
+	opacity: 0.95;
+}
+
+.ui-widget-content,
+.ui-dialog .ui-dialog-titlebar {
+	border: none;
+	background: transparent;
+}

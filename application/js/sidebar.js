@@ -51,7 +51,7 @@
 			success: function (obj) {
 				vid = returnId(obj);
 				
-				var content = '<iframe title="YouTube video player" class="youtube-player" type="text/html" width="380" height="190" src="http://www.youtube.com/embed/' + vid + '" frameborder="0"></iframe>';
+				var content = '<iframe title="YouTube video player" class="youtube-player" type="text/html" width="670" height="408" src="http://www.youtube.com/embed/' + vid + '" frameborder="0"></iframe>';
 
 
 				$('#dialog-modal').html(content);
