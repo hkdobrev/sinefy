@@ -15,10 +15,10 @@
         <?php endforeach ?>
     </div>
     <div class="movieLinks" style="float: left; width: 200px;">
-        <ul>
-            <li><a href='http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dmovies-tv&field-keywords=<?php echo $_GET['movie_title']; ?>'>Buy on Amazon</a></li>
-            <li><a href='https://signup.netflix.com/global'>Watch online</a></li>
-            <li><a href='#' onclick="javascript:showMap();">Buy tickets</a></li>
+        <ul style="list-style-type: none">
+            <li style="margin-bottom: 20px;"><a class="btn btn-large" href='http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dmovies-tv&field-keywords=<?php echo $_GET['movie_title']; ?>'>Buy DVD/Blu-Ray</a></li>
+            <li style="margin-bottom: 20px;"><a class="btn btn-large" href='https://signup.netflix.com/global'>Watch online</a></li>
+            <li style="margin-bottom: 20px;"><a class="btn btn-large" href='#' onclick="javascript:showMap();">Buy tickets</a></li>
         </ul>
     </div>
 </div>
