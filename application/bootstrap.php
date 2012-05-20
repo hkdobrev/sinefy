@@ -157,11 +157,12 @@ Route::set('home', '(<page>)', array(
 ))
 	->defaults(array(
 		'controller' => 'home',
-		'action' => 'index'
+		'action' => 'index',
+		'page'		 =>	'1'
 	));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'home',
-		'action'     => 'index',
+		'action'     => 'index'
 	));

@@ -4,9 +4,9 @@ class Controller_Parser extends Controller {
 	
 	public function action_index()
 	{
-		$tokens = array("hkdobrev" => 'AAAAAAITEghMBAL14SZCNKLnuSusvNRWZCZCO1T7PiNko8masrcTARCDcWV0LcyXJRsXgn8snRhppG22dA8RAkXIErEqZC55bucupirHCfYPYvJAZC79hA',
-						"1082926232" => 'AAAAAAITEghMBAMApJoXRnu6H8gLoxTR1sQxeLxFMIURjGkj39D6ZCmhKx5L9ZAVavPhZAIQADkp5EWzDNNSeeawuKoSZBQN5jdAChN24fQ9ebyp1qAtl',
-						"nstoitsev" => "AAAAAAITEghMBAFTPfY6y0taHyNVcGgBDzkUDo8Y7uZBDSSmHLQJhMaer53ObNqbKcq2LcjrS6HsN0qhwzhsHP3iwruygjV3K1Nw37eAZDZD");
+		$tokens = array("hkdobrev" => 'AAAAAAITEghMBAKKa74V8VsZBAtxMWOzdWS0EmFmAZAcq4TNcYnYF0ZBiycZCjx68ZCVTiIO6nh7Kn3F6iWCQZAJEDGHQi5BlnGGvmWOcrkc7DeK6FmXm2b',
+						"1082926232" => 'AAAAAAITEghMBAFrTHwoYP1l5PsI10rqUiOBgEZBVFa6krXZA8s1sK3U25JAWxHdNUZCyO1y1kwSOVjSZB2D9PQH3BmqZACZA1I5MDLBw3mKx4q8pGXTIuc',
+						"nstoitsev" => "AAAAAAITEghMBAOKOKoIvXykIEd4naPBO99zCJmaDI4yxiGbJVISfGbLyiLBvtJm5DEEgpTDhr79JFhYaxW6lX4d0W5y7FIRZB8wCbXwZDZD");
 
 		
 		Kohana::load(Kohana::find_file('vendor/facebook-php-sdk', 'facebook'));

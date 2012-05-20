@@ -21,7 +21,7 @@
 		<?php echo $content;?>
 	</div> <!-- /container -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="js/libs/jquery-1.7.2.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="assets/js/libs/jquery-1.7.2.js"><\/script>')</script>
 <?php echo View::factory('assets/body')?>
 </body>
 </html>
