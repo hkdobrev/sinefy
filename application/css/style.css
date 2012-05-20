@@ -112,6 +112,7 @@ ul#posters, ul#posters > li {
 #posters p.faces img {
   width: 28px;
   height: auto;
+  margin-bottom: 2px;
 }
 #posters h3.faces-heading {
   margin: 0;
