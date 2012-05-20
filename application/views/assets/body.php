@@ -1,9 +1,9 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
 $assets = Assets::factory('body')
+	->js('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js')
 	->js('libs/bootstrap/bootstrap.min.js')
 	->js('plugins.js')
-	->js_block("jQuery('#trailer').modal({show: false});")
 	->js('libs/jquery.masonry.min.js')
 	->js('libs/jquery.infinitescroll.js')
 	->js('script.js')
