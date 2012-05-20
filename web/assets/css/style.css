@@ -149,7 +149,7 @@ a.movie-poster:hover span {
 	text-align: center;
 	z-index: 100;
 	position: fixed;
-	left: 350px;
+	left: 450px;
 	bottom: 40px;
 	width: 50px;
 	padding: 10px;
@@ -189,4 +189,9 @@ a.movie-poster:hover span {
 	background-repeat: no-repeat;
 	padding-left: 35px;
 
+}
+
+div.finished-loading-msg {
+	text-align: center;
+	font-size: 18px;
 }
