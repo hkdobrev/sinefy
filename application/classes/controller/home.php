@@ -12,7 +12,7 @@ class Controller_Home extends Controller_Layout {
 					->count_all()
 			));
 
-			if ($pagination->current_page > $pagination->total_pages) 
+			if (!$pagination->next_page) 
 			{
 				$this->view = false;
 			}
