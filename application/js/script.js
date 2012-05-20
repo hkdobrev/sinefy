@@ -18,10 +18,12 @@ var done = false;
 		$container.infinitescroll({
 			navSelector: '#movies-pagination',
 			nextSelector: '#movies-pagination a',
+			behavior: 'sinefy',
 			itemSelector: 'li.poster',
 			loading: {
-				finishedMsg: "That's all the movies for now, buddy. <br/>Keep watchin and you'll get more of these!",
-				img: "http://i.imgur.com/6RMhx.gif"
+				finishedMsg: "<div class=\"finished-loading-msg\">That's all the movies for now, buddy. <br/>Keep watching and you'll get more of these!</div>",
+				img: "http://i.imgur.com/6RMhx.gif",
+				msgText: ''
 				}
 			},
 			function(newElements) {
@@ -34,6 +36,12 @@ var done = false;
 		        });
 			}
 		);
+
+		$.infinitescroll.prototype._showdonemsg_sinefy = function() {
+			var opts = this.options;
+			$('#infscr-loading').fadeOut();
+			$('#posters').after(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000);
+		};
 	});
 }(window, window.jQuery));
 
