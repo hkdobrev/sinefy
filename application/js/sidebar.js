@@ -39,4 +39,12 @@
 
 	}
 
+	$('.trailer-btn').click(function(e){
+		var name = $(this).data('trailer');
+
+		$('#dialog-modal').dialog('open');
+		$('#dialog-modal').dialog( "option", "title", name + ' Trailer' )
+
+	});
+
 }(window.jQuery));

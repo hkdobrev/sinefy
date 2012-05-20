@@ -23,6 +23,20 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
 <script>window.jQuery || document.write('<script src="assets/js/libs/jquery-1.7.2.js"><\/script>')</script>
 <?php echo View::factory('assets/body')?>
+
+<div id="dialog-modal" title="Trailer">
+	<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>
+</div>
+<script type="text/javascript">
+	jQuery(function() {
+		jQuery( "#dialog-modal" ).dialog({
+			height: 440,
+			width: 700,
+			modal: true,
+			autoOpen: false	
+		});
+	});
+</script>
+
 </body>
 </html>
-

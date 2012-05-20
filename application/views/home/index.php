@@ -50,7 +50,7 @@
 
 			<h2><?php echo $movie->name; ?></h2>
 
-			<a class="thumbnail" data-toggle="trailer" href="#trailer" class="margin-top: 20px"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
+			<a class="thumbnail trailer-btn" href="#myModal" style="margin-top: 20px" data-trailer="<?php echo $movie->name; ?>"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
 			<p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 50, '.') : ""; ?></p>
 		  
 			<a href="#" class="btn" style="width:100px">Watched</a>
@@ -62,19 +62,4 @@
 	</div>
 			<?php endif; ?>
 
-</div>
-
-
-<div class="modal hide fade" id="trailer">
-  <div class="modal-header">
-	<button class="close" data-dismiss="trailer">×</button>
-	<h3>Modal header</h3>
-  </div>
-  <div class="modal-body">
-	<p>One fine body…</p>
-  </div>
-  <div class="modal-footer">
-	<a href="#" class="btn">Close</a>
-	<a href="#" class="btn btn-primary">Save changes</a>
-  </div>
 </div>
