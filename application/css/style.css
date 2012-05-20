@@ -181,3 +181,10 @@ a.movie-poster:hover span {
 	margin-top: 3px;
 	margin-right: -4px;
 }
+
+.button-form button.active {
+	background-image: url(../img/images.jpg);
+	background-position: 10px center;
+	background-repeat: no-repeat;
+
+}
