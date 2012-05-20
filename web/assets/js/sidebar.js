@@ -1,6 +1,6 @@
 (function ($) {
 
-	$(".movie-poster").click(function() {
+	$('#posters').on('click', '.movie-poster', function() {
 		var id = $(this).data('movie');
 		var name = $("#movie-name-" + id).text();
 

@@ -16,6 +16,7 @@ var done = false;
 		});
 
 		$container.infinitescroll({
+			dataType: 'html',
 			navSelector: '#movies-pagination',
 			nextSelector: '#movies-pagination a',
 			behavior: 'sinefy',
@@ -28,12 +29,12 @@ var done = false;
 			},
 			function(newElements) {
 				var $newElems = $( newElements ).css({ opacity: 0 });
-		        // ensure that images load before adding to masonry layout
-		        $newElems.imagesLoaded(function(){
-		          // show elems now they're ready
-		          $newElems.animate({ opacity: 1 });
-		          $container.masonry( 'appended', $newElems, true ); 
-		        });
+				// ensure that images load before adding to masonry layout
+				$newElems.imagesLoaded(function(){
+				// show elems now they're ready
+				$newElems.animate({ opacity: 1 });
+				$container.masonry( 'appended', $newElems, true );
+				});
 			}
 		);
 
@@ -42,6 +43,13 @@ var done = false;
 			$('#infscr-loading').fadeOut();
 			$('#posters').after(opts.loading.finishedMsg).animate({ opacity: 1 }, 2000);
 		};
+
+		window.sinefySidebar = function (d) {
+			var data = d[0];
+			console.log(data);
+			data.find('.movie-sidebar').appendTo($('.sidebar'));
+		};
+
 	});
 }(window, window.jQuery));
 
@@ -76,14 +84,14 @@ function stopVideo() {
 function showVideoList(data) {
 	var url = data.feed.entry[0].media$group.media$player[0].url,
 		videoIdParam;
-    
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    if (match && match[7].length==11){
-        videoIdParam =  match[7];
-    }
+	
+	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+	var match = url.match(regExp);
+	if (match && match[7].length==11){
+		videoIdParam =  match[7];
+	}
 
-    return videoIdParam;
+	return videoIdParam;
 
 }
 
@@ -91,19 +99,19 @@ function getVideo(name) {
 	var vid;
 
 	$.ajax({
-	    url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(name) + "&alt=json&max-results=30&format=5",
-	    dataType: "jsonp",
-	    success: function (obj) {
-	    	vid = showVideoList(obj);
+		url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(name) + "&alt=json&max-results=30&format=5",
+		dataType: "jsonp",
+		success: function (obj) {
+			vid = showVideoList(obj);
 			player = new YT.Player('player', {
-			    height: '390',
-			    width: '640',
-			    videoId: vid,
-			    events: {
-			      'onReady': onPlayerReady,
-			      'onStateChange': onPlayerStateChange
-			    }
-		  	});
-	    }
+				height: '390',
+				width: '640',
+				videoId: vid,
+				events: {
+				  'onReady': onPlayerReady,
+				  'onStateChange': onPlayerStateChange
+				}
+			});
+		}
 	});
 }
