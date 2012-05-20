@@ -10,7 +10,7 @@
 	<title><?php echo $title?></title>
 	<meta name="description" content="">
 	<meta name="author" content="">
-
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon" />
 	<meta name="viewport" content="width=device-width">
 	<?php echo View::factory('assets/head')?>
 </head>
