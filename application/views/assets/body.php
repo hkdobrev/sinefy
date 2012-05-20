@@ -5,6 +5,7 @@ $assets = Assets::factory('body')
 	->js('plugins.js')
 	->js_block("jQuery('#trailer').modal({show: false});")
 	->js('libs/jquery.masonry.min.js')
+	->js('libs/jquery.infinitescroll.min.js')
 	->js('script.js')
 	->js('sidebar.js');
 

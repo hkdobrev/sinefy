@@ -14,6 +14,26 @@ var done = false;
 				gutterWidth: 9
 			});
 		});
+
+		$container.infinitescroll({
+			navSelector: '#movies-pagination',
+			nextSelector: '#movies-pagination a',
+			itemSelector: 'li.poster',
+			loading: {
+				finishedMsg: "That's all the movies for now, buddy. <br/>Keep watchin and you'll get more of these!",
+				img: "http://i.imgur.com/6RMhx.gif"
+				}
+			},
+			function(newElements) {
+				var $newElems = $( newElements ).css({ opacity: 0 });
+		        // ensure that images load before adding to masonry layout
+		        $newElems.imagesLoaded(function(){
+		          // show elems now they're ready
+		          $newElems.animate({ opacity: 1 });
+		          $container.masonry( 'appended', $newElems, true ); 
+		        });
+			}
+		);
 	});
 }(window, window.jQuery));
 
