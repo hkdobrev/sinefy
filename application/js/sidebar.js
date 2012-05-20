@@ -39,7 +39,7 @@
 
 	}
 
-	$('.trailer-btn').click(function(e){
+	$('.sidebar').on('click', '.trailer-btn', function(e){
 		var name = $(this).data('trailer');
 
 
