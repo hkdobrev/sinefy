@@ -54,9 +54,9 @@ var done = false;
 			e.preventDefault();
 			var form = $(this);
 			$.post(form.attr('action'), form.serialize(), function () {
-				if ($.isFunction(window.inviteFriends))
+				if ($.isFunction(window.inviteFriends) && form.find('.to-watch-button').length)
 				{
-					window.inviteFriends();
+					window.inviteFriends(form);
 				}
 			});
 			form.find('button').toggleClass('active');

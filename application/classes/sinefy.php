@@ -24,7 +24,7 @@ class Sinefy {
 			'data-movieid' => $movie_id
 		);
 		return Form::open(Route::url('to_watch'), array('class' => 'button-form'))
-			.Form::button('movie', 'Watch',$attrs)
+			.Form::button('movie', 'Want to watch',$attrs)
 		.Form::close();
 	}
 
