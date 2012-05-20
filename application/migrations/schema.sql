@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS `movies_users` (
   `movie_id` int(11) DEFAULT NULL,
   `wishlist` tinyint(1) NOT NULL DEFAULT '0',
   `watched` tinyint(1) NOT NULL DEFAULT '0',
+  `ranking` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
