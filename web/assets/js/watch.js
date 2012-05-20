@@ -89,7 +89,7 @@ function inviteFriends(form) {
         draggable: false,
         resizable: false    
     });
-    $('#dialog').dialog( "option", "title", "Watch " + name);
-    $( "#dialog" ).dialog( "open" );
+    $('#dialog').dialog("option", "title", "Watch " + name + " with: ");
+    $("#dialog").dialog("open");
 
 }
