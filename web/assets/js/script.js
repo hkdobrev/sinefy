@@ -50,6 +50,15 @@ var done = false;
 			data.find('.movie-sidebar').appendTo($('.sidebar'));
 		};
 
+		$('.sidebar').on('submit', '.button-form', function(e){
+			e.preventDefault();
+			var form = $(this);
+			$.post(form.attr('action'), form.serialize(), function () {
+
+			});
+			form.find('button').toggleClass('active');
+		});
+
 	});
 }(window, window.jQuery));
 
