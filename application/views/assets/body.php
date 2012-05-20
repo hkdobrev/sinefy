@@ -3,8 +3,8 @@
 $assets = Assets::factory('body')
 	->js('libs/bootstrap/bootstrap.min.js')
 	->js('plugins.js')
-	->js_block("jQuery('#trailer').modal({show: false});")
 	->js('libs/jquery.masonry.min.js')
+	->js('https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js')
 	->js('libs/jquery.infinitescroll.min.js')
 	->js('script.js')
 	->js('sidebar.js');
