@@ -46,7 +46,6 @@ var done = false;
 
 		window.sinefySidebar = function (d) {
 			var data = d[0];
-			console.log(data);
 			data.find('.movie-sidebar').appendTo($('.sidebar'));
 		};
 

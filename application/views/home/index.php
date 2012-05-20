@@ -58,9 +58,8 @@
                         <a class="thumbnail trailer-btn" href="#myModal" style="margin-top: 20px" data-trailer="<?php echo $movie->name; ?>"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
                         <p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 50, '.') : ""; ?></p>
 
-                        <a href="#" class="btn" style="width:100px">Watched</a>
-                        <a href="#" class="btn wantToWach" data-movieid="<?php echo $movie->id; ?>" id="wantToWach-<?php echo $movie->id; ?>" style="width:100px">To Watch</a>
-
+                        <?php echo Sinefy::actions($movie->pk())?>
+                        
                     </div>
                 <?php endforeach ?>
             </div>
