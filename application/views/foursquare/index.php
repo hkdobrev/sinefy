@@ -22,7 +22,7 @@
         {
             navigator.geolocation.getCurrentPosition(function (position) { 
                 alert (position.coords.latitude);
-                $.post("setPosition/", { 'latitude': position.coords.latitude, 'longitude': position.coords.longitude },
+                $.post("foursquare/setPosition/", { 'latitude': position.coords.latitude, 'longitude': position.coords.longitude },
                 function(data) {
                 });
                                                                                      
@@ -55,7 +55,7 @@ src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></sc
     }
     #map_canvas {
         height: 400px;
-        width: 95%;
+        width: 600px;
         margin: 0 auto 0 auto;
         border: 1px solid #333;
         margin-top: 0.6em;
@@ -79,14 +79,6 @@ src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></sc
         
         var map = new google.maps.Map(document.getElementById('map_canvas'),
         myOptions);
-        
-        //        var map = new google.maps.Map(document.getElementById('map_canvas'), {
-        //            mapTypeId: google.maps.MapTypeId.ROADMAP,
-        //            center: new google.maps.LatLng(-3323.8665433, 151.1956316),
-        //            zoom: 15
-        //        });
-
-        // Add 5 markers to the map at random locations
        
 
 <?php foreach ($data as $place): ?>
@@ -103,25 +95,12 @@ src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></sc
                 attachSecretMessage(marker, "<?php echo $place->name; ?>");
 <?php endforeach; ?>
     
-        
-    
     }
     google.maps.event.addDomListener(window, 'load', initialize);
-    var panoramioLayer = new google.maps.panoramio.PanoramioLayer();
-    panoramioLayer.setMap(map);
     
     var photoPanel = document.getElementById('photo-panel');
     map.controls[google.maps.ControlPosition.RIGHT_TOP].push(photoPanel);
-    
-    google.maps.event.addListener(panoramioLayer, 'click', function() {
-        var li = document.createElement('li');
-        var link = document.createElement('a');
-        link.innerHTML = ': Pavel NIkolov';
-        link.setAttribute('href', 'http://profile.ak.fbcdn.net/hprofile-ak-snc4/370100_1671139683_1942888812_q.jpg');
-        li.appendChild(link);
-        photoPanel.appendChild(li);
-        photoPanel.style.display = 'block';
-    });    
+   
     function attachSecretMessage(marker, message_text) {
         var infowindow = new google.maps.InfoWindow({
             content: message_text
