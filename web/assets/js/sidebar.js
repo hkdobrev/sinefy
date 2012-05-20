@@ -39,12 +39,26 @@
 
 	}
 
-	$('.trailer-btn').click(function(e){
+	$('.sidebar').on('click', '.trailer-btn', function(e){
 		var name = $(this).data('trailer');
 
-		$('#dialog-modal').dialog('open');
-		$('#dialog-modal').dialog( "option", "title", name + ' Trailer' )
 
+		$('#dialog-modal').dialog( "option", "title", name + ' Trailer' );
+
+		$.ajax({
+			url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(name) + "&alt=json&max-results=30&format=5",
+			dataType: "jsonp",
+			success: function (obj) {
+				vid = returnId(obj);
+				
+				var content = '<iframe title="YouTube video player" class="youtube-player" type="text/html" width="670" height="408" src="http://www.youtube.com/embed/' + vid + '" frameborder="0"></iframe>';
+
+
+				$('#dialog-modal').html(content);
+			}
+		});
+
+		$('#dialog-modal').dialog('open');
 	});
 
 }(window.jQuery));

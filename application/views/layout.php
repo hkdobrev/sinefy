@@ -30,10 +30,12 @@
 <script type="text/javascript">
 	jQuery(function() {
 		jQuery( "#dialog-modal" ).dialog({
-			height: 440,
+			height: 460,
 			width: 700,
 			modal: true,
-			autoOpen: false	
+			autoOpen: false,
+			draggable: false,
+			resizable: false	
 		});
 	});
 </script>
