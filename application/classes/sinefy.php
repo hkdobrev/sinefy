@@ -7,9 +7,10 @@ class Sinefy {
 		$check_watched = Auth::instance()->get_user()->movies->watched($movie_id);
 		$attrs = array(
 			'class' => 'btn watched-button'.($check_watched ? ' active' : ''),
-			'value' => $movie_id
+			'value' => $movie_id,
+			'data-movieid' => $movie_id
 		);
-		return Form::open(Route::url('watched'), array('class' => 'button-form'))
+		return Form::open(Route::url('watched'), array('class' => 'button-form',))
 			.Form::button('movie', 'Watched',$attrs)
 		.Form::close();
 	}
@@ -19,7 +20,8 @@ class Sinefy {
 		$check_to_watch = Auth::instance()->get_user()->movies->wishlist($movie_id);
 		$attrs = array(
 			'class' => 'btn to-watch-button'.($check_to_watch ? ' active' : ''),
-			'value' => $movie_id
+			'value' => $movie_id,
+			'data-movieid' => $movie_id
 		);
 		return Form::open(Route::url('to_watch'), array('class' => 'button-form'))
 			.Form::button('movie', 'Watch',$attrs)
