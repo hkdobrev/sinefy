@@ -64,7 +64,7 @@
                             </p>
                         <?php endif ?>
                         <?php if ($friends_counter < $friends_count - 1 AND $m < $movies_with_friends): ?>
-                            <h3 class="faces-heading">To watch</h3>
+                            <h3 class="faces-heading">Want to watch</h3>
                             <p class="faces to-watch">
                                 <?php for ($i = $to_watch_start; $i < $to_watch_start + $number_to_watch; $i++):?>
                                     <?php echo HTML::image('https://graph.facebook.com/' . $friends[$i]['id'] . '/picture?type=square') ?>
@@ -85,7 +85,6 @@
         <div class="span3">
 
             <div class="sidebar" style="position: fixed; width: 250px;">
-                <div id="dialog" style="width: 600px;">&nbsp;</div>
                 <h3 id="click-on-movie">Click on a movie</h3>
                 <?php
                 foreach ($movies_users->rewind() as $movies_user):
@@ -105,5 +104,11 @@
             </div>
         </div>
     <?php endif; ?>
+
+</div>
+
+
+<div id="dialog">
+
 
 </div>

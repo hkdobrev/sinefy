@@ -10,8 +10,8 @@ $assets = Assets::factory('body')
 ->js('libs/jquery.infinitescroll.js')
 ->js('script.js')
 ->js('sidebar.js')
-->js('watch.js')
-->js('google.js');
+->js('google.js')
+->js('watch.js');
 
 if ($ga_key = Kohana::$config->load('analytics.google.key'))
 {

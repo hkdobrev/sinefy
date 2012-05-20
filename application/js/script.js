@@ -46,6 +46,7 @@ var done = false;
 
 		window.sinefySidebar = function (d) {
 			var data = d[0];
+			console.log(data);
 			data.find('.movie-sidebar').appendTo($('.sidebar'));
 		};
 
@@ -53,9 +54,9 @@ var done = false;
 			e.preventDefault();
 			var form = $(this);
 			$.post(form.attr('action'), form.serialize(), function () {
-				if ($.isFunction(window.inviteFriends))
+				if ($.isFunction(window.inviteFriends) && form.find('.to-watch-button').length)
 				{
-					window.inviteFriends();
+					window.inviteFriends(form);
 				}
 			});
 			form.find('button').toggleClass('active');
