@@ -28,26 +28,23 @@ class Auth_Facebook extends Auth_ORM {
 						->populate_from_facebook($this->facebook()->api('/me'))
 						->save();
 
+						$movies = ORM::factory('movie')->find_all();
+						$rankings = range(1, $movies->count());
+						shuffle($rankings);
+						foreach ($movies as $k => $movie) {
+							ORM::factory('movies_user')->values(array(
+								'user_id' => $user->pk(),
+								'movie_id' => $movie->pk(),
+								'ranking' => $rankings[$k]
+							))->save();
+						}
+
 					$this->force_login($user);
 				}
 			}
 			else
 			{
 				$user = NULL;
-			}
-		}
-
-		if ($user)
-		{
-			$movies = ORM::factory('movie')->find_all();
-			$rankings = range(1, $movies->count());
-			shuffle($rankings);
-			foreach ($movies as $k => $movie) {
-				ORM::factory('movies_user')->values(array(
-					'user_id' => $user->pk(),
-					'movie_id' => $movie->pk(),
-					'ranking' => $rankings[$k]
-				))->save();
 			}
 		}
 
