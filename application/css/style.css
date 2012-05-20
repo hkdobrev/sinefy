@@ -88,14 +88,19 @@ ul#posters, ul#posters > li {
 
 #posters li.poster {
   float: left;
-  width: 170px;
+  width: 190px;
   margin-bottom: 6px;
+  padding: 10px;
   list-style: none;
   background-color: #fff;
 }
 
+#posters.no-js li.poster {
+	margin-right: 9px;
+}
+
 #posters li.poster a img {
-  width: 160px;
+  width: 180px;
   display: block;
   margin: 5px auto;
 }

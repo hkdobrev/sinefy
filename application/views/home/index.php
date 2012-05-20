@@ -5,27 +5,27 @@
 	<?php if ($current_user AND $current_user->loaded()):?> 
 	<ul id="posters">
 		<?php $movies_users = $movies_users->find_all();
-		foreach($movies_users as $movies_user):?>
+		$friends_counter = 0;
+		$movies_with_friends = round($friends_count / 5);
+		foreach($movies_users as $m => $movies_user):?>
 		<li class="poster">
 			<a class="movie-poster" data-movie="<?php echo $movies_user->movie->pk()?>">
 				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=large')?>
 			</a>
-			<?php //$watched = $movie->users->watched()->find_all();
-			if (FALSE AND $watched->count()):?>
+			<?php if ($friends_counter < $friends_count AND $m < $movies_with_friends):?>
 			<h3 class="faces-heading">Watched</h3>
 			<p class="faces watched">
-				<?php foreach ($to_watch as $user):?>
-				<?php echo HTML::image('https://graph.facebook.com/'.$user->friend_id.'/picture?type=square')?>
-				<?php endforeach?>
+				<?php for (; $m - 1 > $friends_counter AND $friends_counter < $friends_count; $friends_counter++):?>
+				<?php echo HTML::image('https://graph.facebook.com/'.$friends[$friends_counter]['id'].'/picture?type=square')?>
+				<?php endfor?>
 			</p>
 			<?php endif?>
-			<?php //$to_watch = $movie->users->to_watch()->find_all();
-			if (FALSE AND $to_watch->count()):?>
+			<?php if ($friends_counter < $friends_count - 1 AND $m < $movies_with_friends):?>
 			<h3 class="faces-heading">To watch</h3>
 			<p class="faces to-watch">
-				<?php foreach ($to_watch as $user):?>
-				<?php echo HTML::image('https://graph.facebook.com/'.$user->friend_id.'/picture?type=square')?>
-				<?php endforeach?>
+				<?php for (; $m - 1 > $friends_counter AND $friends_counter < $friends_count; $friends_counter++):?>
+				<?php echo HTML::image('https://graph.facebook.com/'.$friends[$friends_counter]['id'].'/picture?type=square')?>
+				<?php endfor?>
 			</p>
 			<?php endif?>
 		</li>

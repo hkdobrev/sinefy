@@ -11,6 +11,8 @@ class Controller_Home extends Controller_Layout {
 					->where('movies_user.user_id', '=', $this->current_user->pk())
 					->count_all()
 			));
+			$friends = Arr::get(Auth::instance()->facebook()->api('/me/friends', array('limit' => 5000)), 'data', array());
+			// var_dump($friends);die;
 			$this->view_data = array(
 				'movies_users' => ORM::factory('movies_user')
 					->where('movies_user.user_id', '=', $this->current_user->pk())
@@ -18,7 +20,8 @@ class Controller_Home extends Controller_Layout {
 					->limit($pagination->items_per_page)
 					->offset($pagination->offset)
 					->order_by('movies_user.ranking'),
-				'friends' => Auth::instance()->facebook()->api('/me/friends'),
+				'friends' => $friends,
+				'friends_count' => count($friends),
 				'pagination' => $pagination->render()
 			);
 		}
