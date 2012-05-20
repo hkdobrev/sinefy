@@ -184,8 +184,9 @@ a.movie-poster:hover span {
 }
 
 .button-form button.active {
-	background-image: url(../img/images.jpg);
+	background-image: url(../img/images.png);
 	background-position: 10px center;
 	background-repeat: no-repeat;
+	padding-left: 35px;
 
 }
