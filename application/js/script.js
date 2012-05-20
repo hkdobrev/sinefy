@@ -7,10 +7,11 @@ var done = false;
 	$(function(){
 		var $container = $('#posters');
 		$container.imagesLoaded(function(){
+			$container.removeClass('no-js');
 			$container.masonry({
 				itemSelector: 'li.poster',
-				columnWidth: 170,
-				gutterWidth: 5
+				columnWidth: 210,
+				gutterWidth: 9
 			});
 		});
 	});
