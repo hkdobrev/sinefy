@@ -6,7 +6,6 @@ class Controller_Session extends Controller_Layout {
 	{
 		$this->view = FALSE;
 		$user = Auth::instance()->get_user();
-		$this->response->body(json_encode(array('ok' => TRUE)));
 	}
 
 	public function action_delete()
