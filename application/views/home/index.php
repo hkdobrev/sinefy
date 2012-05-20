@@ -10,6 +10,7 @@
 			<a class="movie-poster" data-movie="<?php echo $movies_user->movie->pk()?>">
 				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=large')?>
 			</a>
+      <span style="display:none;" id="movie-name-<?php echo $movies_user->movie->id; ?>"><?php echo $movies_user->movie->name; ?></span>
 			<?php //$watched = $movie->users->watched()->find_all();
 			if (FALSE AND $watched->count()):?>
 			<h3 class="faces-heading">Watched</h3>
@@ -49,8 +50,7 @@
 
             <h2><?php echo $movie->name; ?></h2>
 
-            <a class="thumbnail" data-toggle="trailer" href="#trailer" class="margin-top: 20px"><img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" /></a>
-        
+            <a class="thumbnail" data-toggle="trailer" href="#trailer" class="margin-top: 20px"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
             <p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 70, '.') : ""; ?></p>
           
             <a href="#" class="btn" style="width:100px">Watched</a>
