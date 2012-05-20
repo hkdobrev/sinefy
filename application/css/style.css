@@ -70,7 +70,7 @@
 	padding: 10px;
 }
 
-.movie-sidebar {
+.movie-sidebar, .hidden {
 	display: none;
 }
 

@@ -12,6 +12,7 @@
 			<a class="movie-poster" data-movie="<?php echo $movies_user->movie->pk()?>">
 				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=large')?>
 			</a>
+	      <span class="hidden" id="movie-name-<?php echo $movies_user->movie->id; ?>"><?php echo $movies_user->movie->name; ?></span>
 			<?php if ($friends_counter < $friends_count AND $m < $movies_with_friends):?>
 			<h3 class="faces-heading">Watched</h3>
 			<p class="faces watched">
@@ -40,20 +41,22 @@
 
 	<div class="span3">
 
-		<div class="sidebar">
-          
-      <a class="thumbnail" data-toggle="trailer" href="#trailer"><img src="http://img.youtube.com/vi/NPoHPNeU9fc/0.jpg" class="trailer-preview" /></a>
-			
+		<div class="sidebar" style="position: fixed; width: 250px;">
+      <h3>Click on a movie</h3>
       <?php if ($current_user AND $current_user->loaded()):?>    
 				<?php foreach ($movies_users->rewind() as $movies_user):
 				$movie = $movies_user->movie;?>
 				<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
 
-          <h2><?php echo $movie->name; ?></h2>
+            <h2><?php echo $movie->name; ?></h2>
 
-          <p><strong>About:</strong> <?php echo $movie->about; ?></p>
+            <a class="thumbnail" data-toggle="trailer" href="#trailer" class="margin-top: 20px"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
+            <p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 70, '.') : ""; ?></p>
+          
+            <a href="#" class="btn" style="width:100px">Watched</a>
+            <a href="#" class="btn" style="width:100px">To Watch</a>
 
-				</div>
+        </div>
 				<?php endforeach?>
 			<?php else: ?>
 				<h3>Sign in and you will be able to:</h3>
