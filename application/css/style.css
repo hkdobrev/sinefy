@@ -123,3 +123,24 @@ ul#posters, ul#posters > li {
 	vertical-align: middle;
 	width: 200px;
 }
+a.movie-poster {
+	position: relative;
+	display: block;
+}
+a.movie-poster span {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 20px;
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+	font-weight: bold;
+	z-index: 101;
+	margin: 0 5px;
+}
+a.movie-poster:hover span {
+	display: block;
+	text-align: center;
+	visibility: visible;
+}

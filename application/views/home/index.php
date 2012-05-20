@@ -11,8 +11,8 @@
 		<li class="poster">
 			<a class="movie-poster" data-movie="<?php echo $movies_user->movie->pk()?>">
 				<?php echo HTML::image('https://graph.facebook.com/'.$movies_user->movie->facebook_id.'/picture?type=large')?>
+				<span class="hidden movie-name" id="movie-name-<?php echo $movies_user->movie->id; ?>"><?php echo $movies_user->movie->name; ?></span>
 			</a>
-	      <span class="hidden" id="movie-name-<?php echo $movies_user->movie->id; ?>"><?php echo $movies_user->movie->name; ?></span>
 			<?php if ($friends_counter < $friends_count AND $m < $movies_with_friends):?>
 			<h3 class="faces-heading">Watched</h3>
 			<p class="faces watched">
@@ -39,44 +39,42 @@
 	<?php endif; ?>      
 	</div>
 
+	  <?php if ($current_user AND $current_user->loaded()):?>    
 	<div class="span3">
 
 		<div class="sidebar" style="position: fixed; width: 250px;">
-      <h3>Click on a movie</h3>
-      <?php if ($current_user AND $current_user->loaded()):?>    
+	  <h3 id="click-on-movie">Click on a movie</h3>
 				<?php foreach ($movies_users->rewind() as $movies_user):
 				$movie = $movies_user->movie;?>
 				<div id="movie-<?php echo $movie->pk()?>" class="movie-sidebar">
 
-            <h2><?php echo $movie->name; ?></h2>
+			<h2><?php echo $movie->name; ?></h2>
 
-            <a class="thumbnail" data-toggle="trailer" href="#trailer" class="margin-top: 20px"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
-            <p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 70, '.') : ""; ?></p>
-          
-            <a href="#" class="btn" style="width:100px">Watched</a>
-            <a href="#" class="btn" style="width:100px">To Watch</a>
+			<a class="thumbnail" data-toggle="trailer" href="#trailer" class="margin-top: 20px"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
+			<p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 50, '.') : ""; ?></p>
+		  
+			<a href="#" class="btn" style="width:100px">Watched</a>
+			<a href="#" class="btn" style="width:100px">To Watch</a>
 
-        </div>
+		</div>
 				<?php endforeach?>
-			<?php else: ?>
-				<h3>Sign in and you will be able to:</h3>
-			<?php endif; ?>
 		</div>
 	</div>
+			<?php endif; ?>
 
 </div>
 
 
 <div class="modal hide fade" id="trailer">
   <div class="modal-header">
-    <button class="close" data-dismiss="trailer">×</button>
-    <h3>Modal header</h3>
+	<button class="close" data-dismiss="trailer">×</button>
+	<h3>Modal header</h3>
   </div>
   <div class="modal-body">
-    <p>One fine body…</p>
+	<p>One fine body…</p>
   </div>
   <div class="modal-footer">
-    <a href="#" class="btn">Close</a>
-    <a href="#" class="btn btn-primary">Save changes</a>
+	<a href="#" class="btn">Close</a>
+	<a href="#" class="btn btn-primary">Save changes</a>
   </div>
 </div>

@@ -27,14 +27,11 @@
 		// Additional initialization code here
 		
 		if ( ! $('body').hasClass('logged-in') ) {
-			console.log('sdfds');
 			FB.getLoginStatus(function( response ) {
 				if ( response.status === 'connected' ) {
 					$.post('/login', {id: response.authResponse.userID}, function( data ) {
-						if ( data.ok ) {
-							window.location.replace('/');
-						}
-					}, 'json');
+						window.location.replace('/');
+					});
 				} else {
 					FB.Event.subscribe( 'auth.statusChange', function( response ) {
 						if ( response.authResponse ) {
