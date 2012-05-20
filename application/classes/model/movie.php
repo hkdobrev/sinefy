@@ -8,17 +8,18 @@ class Model_Movie extends ORM {
 		'movies_users' => array()
 	);
 
-	public function watched()
+	public function watched($movie_id)
 	{
-		return $this->where('watched', '=', '1')
-					->find()
-					->loaded();
+		return (bool) $this->where('watched', '=', '1')
+			->where('movie.id', '=', $movie_id)
+					->count_all();
 	}
 
-	public function wishlist()
+	public function wishlist($movie_id)
 	{
-		return $this->where('wishlist', '=', '1')
-					->find()
-					->loaded();
+		return (bool) $this
+			->where('wishlist', '=', '1')
+			->where('movie.id', '=', $movie_id)
+					->count_all();
 	}
 }

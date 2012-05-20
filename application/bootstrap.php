@@ -161,6 +161,18 @@ Route::set('home', '(<page>)', array(
 		'page'		 =>	'1'
 	));
 
+Route::set('watched', 'movie/watched')
+	->defaults(array(
+		'controller' => 'movie',
+		'action' => 'watched'
+	));
+
+Route::set('to_watch', 'movie/to_watch')
+	->defaults(array(
+		'controller' => 'movie',
+		'action' => 'to_watch'
+	));
+
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(
 		'controller' => 'home',

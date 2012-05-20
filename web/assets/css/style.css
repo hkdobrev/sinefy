@@ -112,6 +112,7 @@ ul#posters, ul#posters > li {
 #posters p.faces img {
   width: 28px;
   height: auto;
+  margin-bottom: 2px;
 }
 #posters h3.faces-heading {
   margin: 0;
@@ -175,4 +176,17 @@ a.movie-poster:hover span {
 .ui-dialog .ui-dialog-titlebar {
 	border: none;
 	background: transparent;
+}
+
+.navbar .btn, .navbar .btn-group {
+	margin-top: 3px;
+	margin-right: -4px;
+}
+
+.button-form button.active {
+	background-image: url(../img/images.png);
+	background-position: 10px center;
+	background-repeat: no-repeat;
+	padding-left: 35px;
+
 }
