@@ -287,14 +287,15 @@
                 case 'no-append':
 
                     if (opts.dataType == 'html') {
-                        data = '<div>' + data + '</div>';
-                        data = $(data).find(opts.itemSelector);
+                        data = $('<div>' + data + '</div>');
+                        data = data.find(opts.itemSelector);
                     }
 
                     break;
 
                 case 'append':
 
+                    window.sinefySidebar([$('<div>' + data + '</div>')]);
                     var children = box.children();
 
                     // if it didn't return anything
