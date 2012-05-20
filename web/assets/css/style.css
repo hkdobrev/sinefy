@@ -176,3 +176,8 @@ a.movie-poster:hover span {
 	border: none;
 	background: transparent;
 }
+
+.navbar .btn, .navbar .btn-group {
+	margin-top: 3px;
+	margin-right: -4px;
+}
