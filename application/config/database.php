@@ -18,9 +18,63 @@ $config =  array(
 			 * Ports and sockets may be appended to the hostname.
 			 */
 			'hostname'   => 'localhost',
-			'database'   => 'movies',
-			'username'   => 'root',
-			'password'   => '',
+			'database'   => 'sinefy',
+			'username'   => 'sinefy',
+			'password'   => 'q84B1UGpkV70Lhx',
+			'persistent' => FALSE,
+		),
+		'table_prefix' => '',
+		'charset'      => 'utf8',
+		'caching'      => FALSE,
+		'profiling'    => TRUE,
+	),
+
+	Kohana::TESTING => array(
+		'type'       => 'mysql',
+		'connection' => array(
+			/**
+			 * The following options are available for MySQL:
+			 *
+			 * string   hostname     server hostname, or socket
+			 * string   database     database name
+			 * string   username     database username
+			 * string   password     database password
+			 * boolean  persistent   use persistent connections?
+			 * array    variables    system variables as "key => value" pairs
+			 *
+			 * Ports and sockets may be appended to the hostname.
+			 */
+			'hostname'   => 'localhost',
+			'database'   => 'sinefy_test',
+			'username'   => 'sinefy_test',
+			'password'   => 'd757IWlRt2C8Y0e',
+			'persistent' => FALSE,
+		),
+		'table_prefix' => '',
+		'charset'      => 'utf8',
+		'caching'      => FALSE,
+		'profiling'    => TRUE,
+	),
+
+	Kohana::STAGING => array(
+		'type'       => 'mysql',
+		'connection' => array(
+			/**
+			 * The following options are available for MySQL:
+			 *
+			 * string   hostname     server hostname, or socket
+			 * string   database     database name
+			 * string   username     database username
+			 * string   password     database password
+			 * boolean  persistent   use persistent connections?
+			 * array    variables    system variables as "key => value" pairs
+			 *
+			 * Ports and sockets may be appended to the hostname.
+			 */
+			'hostname'   => 'localhost',
+			'database'   => 'sinefy_staging',
+			'username'   => 'sinefy_staging',
+			'password'   => '5zy604yD0Brwvq2',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',
@@ -45,9 +99,9 @@ $config =  array(
 			 * Ports and sockets may be appended to the hostname.
 			 */
 			'hostname'   => 'localhost',
-			'database'   => 'movies',
-			'username'   => 'root',
-			'password'   => '',
+			'database'   => 'sinefy',
+			'username'   => 'sinefy',
+			'password'   => 'QeSI$z84Mdu3oa4',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',

@@ -1,290 +1,166 @@
-<?xml version="1.0" ?>
-<project name="kohana" default="help">
-	<property environment="env"/>
+<?xml version="1.0" encoding="UTF-8"?>
 
-	<property name="basedir" value="${project.basedir}"/>
-	<property name="builddir" value="${basedir}/build"/>
+<project name="Sinefy" default="build-parallel">
+	<target name="build"
+	 depends="prepare,lint,phploc,pdepend,phpmd-ci,phpcs-ci,phpcpd,phpunit,phpcb"/>
 
-	<property name="branch" value="3.2/develop"/>
+	<target name="build-parallel"
+	 depends="prepare,lint,tools-parallel,phpunit,phpcb"/>
 
-	<property name="submodules" value="system,modules/auth,modules/cache,modules/codebench,modules/database,modules/image,modules/orm,modules/unittest,modules/userguide"/>
-
-	<!-- Shows the help message -->
-	<target name="help">
-		<echo message="General Targets"/>
-		<echo message="==============="/>
-		<echo message="phing test              Run unit tests."/>
-		<echo message="phing test-log          Run unit tests with logging enabled."/>
-		<echo message="phing phpcs             Run phpcs."/>
-		<echo message="phing phpcs-log         Run phpcs with logging enabled."/>
-		<echo message="phing phpmd             Run phpmd."/>
-		<echo message="phing phpmd-log         Run phpmd with logging enabled."/>
-		<echo message="phing phpcpd-log        Run phpcpd with logging enabled."/>
-		<echo message="phing pdepend-log       Run pdepend with logging enabled."/>
-		<echo message="phing phpcb-log         Run phpcb with logging enabled."/>
-		<echo message=""/>
-		<echo message="Kohana Developer Targets"/>
-		<echo message="========================"/>
-		<echo message="phing dev-setup         Setup for development on Kohana itself."/>
-		<echo message="phing git-status        Show the git status of each submodule."/>
-		<echo message="phing git-checkout      Checkout a branch accross all submodules."/>
-		<echo message="phing git-pull          Perform a pull for each submodule."/>
-		<echo message="phing git-push          Perform a push for each submodule."/>
-		<echo message=""/>
-		<echo message="Misc Targets"/>
-		<echo message="============"/>
-		<echo message="phing ci                Alias task for continuous integration servers"/>
-		<echo message="phing dist              Build a release .zip"/>
+	<target name="tools-parallel" description="Run tools in parallel">
+		<parallel threadCount="2">
+			<sequential>
+			<antcall target="pdepend"/>
+			<antcall target="phpmd-ci"/>
+			</sequential>
+			<antcall target="phpcpd"/>
+			<antcall target="phpcs-ci"/>
+			<antcall target="phploc"/>
+		</parallel>
 	</target>
 
-	<!-- Clean up -->
-	<target name="clean">
-		<delete dir="${builddir}"/>
-		<!-- Create build directories -->
-		<mkdir dir="${builddir}/coverage"/>
-		<mkdir dir="${builddir}/logs"/>
-		<mkdir dir="${builddir}/release"/>
-		<mkdir dir="${builddir}/code-browser"/>
+	<target name="clean" description="Cleanup build artifacts">
+		<delete dir="${basedir}/build/api"/>
+		<delete dir="${basedir}/build/code-browser"/>
+		<delete dir="${basedir}/build/coverage"/>
+		<delete dir="${basedir}/build/logs"/>
+		<delete dir="${basedir}/build/pdepend"/>
 	</target>
 
-	<target name="dev-setup">
-		<property name="git-checkout-branch" value="${branch}"/> <!-- Prevents git-checkout asking for a branch name -->
-		<exec command="git submodule update --init --recursive" dir="${basedir}" />
-		<phingcall target="_dev-setup-remotes" />
-		<phingcall target="git-pull" />
-		<phingcall target="git-checkout" />
+	<target name="prepare" depends="clean" description="Prepare for build">
+		<property environment="env" />
+
+		<mkdir dir="${basedir}/application/cache"/>
+		<chmod dir="${basedir}/application/cache" perm="777"/>
+
+		<mkdir dir="${basedir}/application/logs"/>
+		<chmod dir="${basedir}/application/logs" perm="777"/>
+
+		<mkdir dir="${basedir}/build/api"/>
+		<mkdir dir="${basedir}/build/code-browser"/>
+		<mkdir dir="${basedir}/build/coverage"/>
+		<mkdir dir="${basedir}/build/logs"/>
+		<mkdir dir="${basedir}/build/pdepend"/>
 	</target>
 
-	<target name="git-pull">
-		<phingcall target="_git-pull">
-			<property name="dir" value="." />
-		</phingcall>
-		<foreach list="${submodules}" param="dir" target="_git-pull"/>
-	</target>
+	<target name="lint" description="Perform syntax check of sourcecode files">
+		<apply executable="php" failonerror="true">
+			<arg value="-l" />
 
-	<target name="_git-pull">
-		<exec command="git pull dev" dir="${dir}"/>
-	</target>
-
-	<target name="git-checkout">
-		<if>
-			<not>
-				<isset property="git-checkout-branch"/>
-			</not>
-			<then>
-				<propertyprompt propertyName="git-checkout-branch" defaultValue="${branch}" promptText="Branch name:" />
-			</then>
-		</if>
-
-		<phingcall target="_git-checkout">
-			<property name="dir" value="." />
-		</phingcall>
-
-		<foreach list="${submodules}" param="dir" target="_git-checkout"/>
-	</target>
-
-	<target name="_git-checkout">
-		<exec returnProperty="git-checkout-branch-exists" command="git show-ref --quiet --verify -- 'refs/remotes/dev/${git-checkout-branch}'" dir="${dir}"  passthru="true"/>
-		<if>
-			<equals arg1="${git-checkout-branch-exists}" arg2="0"/>
-			<then>
-				<exec command="git checkout --track -b ${git-checkout-branch} dev/${git-checkout-branch}" dir="${dir}" passthru="true"/>
-			</then>
-			<else>
-				<exec command="git checkout -b ${git-checkout-branch}" dir="${dir}" passthru="true"/>
-			</else>
-		</if>
-	</target>
-
-	<target name="git-push">
-		<foreach list="${submodules}" param="dir" target="_git-push"/>
-		<phingcall target="_git-push">
-			<property name="dir" value="." />
-		</phingcall>
-	</target>
-
-	<target name="_git-push">
-		<exec command="git push dev" dir="${dir}" passthru="true"/>
-	</target>
-
-	<target name="git-status">
-		<foreach list="${submodules}" param="dir" target="_git-status"/>
-		<phingcall target="_git-status">
-			<property name="dir" value="." />
-		</phingcall>
-	</target>
-
-	<target name="_git-status">
-		<exec command="git status" dir="${dir}" passthru="true"/>
-	</target>
-
-	<target name="_dev-setup-remotes">
-		<!-- TODO: Clean up... -->
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/kohana.git" />
-			<property name="dir"        value="${basedir}" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/core.git" />
-			<property name="dir"        value="${basedir}/system" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/auth.git" />
-			<property name="dir"        value="${basedir}/modules/auth" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/cache.git" />
-			<property name="dir"        value="${basedir}/modules/cache" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/codebench.git" />
-			<property name="dir"        value="${basedir}/modules/codebench" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/database.git" />
-			<property name="dir"        value="${basedir}/modules/database" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/image.git" />
-			<property name="dir"        value="${basedir}/modules/image" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/orm.git" />
-			<property name="dir"        value="${basedir}/modules/orm" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/unittest.git" />
-			<property name="dir"        value="${basedir}/modules/unittest" />
-		</phingcall>
-		<phingcall target="_dev-setup-remote">
-			<property name="repository" value="git@github.com:kohana/userguide.git" />
-			<property name="dir"        value="${basedir}/modules/userguide" />
-		</phingcall>
-	</target>
-
-	<target name="_dev-setup-remote">
-		<exec command="git remote rm dev" dir="${dir}"/>
-		<exec command="git remote add dev ${repository}" dir="${dir}"/>
-	</target>
-
-	<!-- Run unit tests -->
-	<target name="test">
-		<exec command="phpunit --bootstrap=modules/unittest/bootstrap_all_modules.php modules/unittest/tests.php" checkreturn="true" passthru="true"/>
-	</target>
-
-	<!-- Run unit tests and generate junit.xml and clover.xml -->
-	<target name="test-log">
-		<exec command="phpunit --bootstrap=modules/unittest/bootstrap_all_modules.php --coverage-html=${builddir}/coverage --log-junit=${builddir}/logs/junit.xml --coverage-clover=${builddir}/logs/clover.xml modules/unittest/tests.php" checkreturn="true" passthru="true"/>
-	</target>
-
-	<!-- Run PHP Code Sniffer -->
-	<target name="phpcs">
-		<phpcodesniffer standard="Kohana" showSniffs="true" showWarnings="true">
-			<fileset dir="${basedir}">
+			<fileset dir="${basedir}/application/classes">
 				<include name="**/*.php" />
-				<exclude name="**/vendor/**" />
-				<exclude name="**/tests/**" />
+				<modified />
 			</fileset>
-			<formatter type="default" usefile="false"/>
-		</phpcodesniffer>
-	</target>
-
-	<!-- Run PHP Code Sniffer and generate checkstyle.xml -->
-	<target name="phpcs-log">
-		<phpcodesniffer standard="Kohana" showSniffs="true" showWarnings="true">
-			<fileset dir="${basedir}">
+			<fileset dir="${basedir}/modules">
 				<include name="**/*.php" />
-				<exclude name="**/vendor/**" />
-				<exclude name="**/tests/**" />
+				<modified />
 			</fileset>
-			<formatter type="default" usefile="false"/>
-			<formatter type="checkstyle" outfile="${builddir}/logs/checkstyle.xml"/>
-		</phpcodesniffer>
-	</target>
-
-	<!-- Run PHP Mess Detector -->
-	<target name="phpmd">
-		<exec command="phpmd ${basedir} text codesize,unusedcode --exclude=**/vendor/**"  passthru="true"/>
-	</target>
-
-	<!-- Run PHP Mess Detector and generate pmd.xml -->
-	<target name="phpmd-log">
-		<exec command="phpmd ${basedir} xml codesize,unusedcode --exclude=**/vendor/** --reportfile ${builddir}/logs/pmd.xml"  passthru="true"/>
-	</target>
-
-	<!-- Run PHP Copy/Paste Detector and generate pmd.xml -->
-	<target name="phpcpd-log">
-		<phpcpd>
-			<fileset dir="${basedir}">
+			<fileset dir="${basedir}/application/tests">
 				<include name="**/*.php" />
-				<exclude name="**/vendor/**" />
+				<modified />
 			</fileset>
-			<formatter type="pmd" outfile="${builddir}/logs/pmd-cpd.xml"/>
-		</phpcpd>
+		</apply>
 	</target>
 
-	<!-- Run PHP Depend and generate jdepend.xml -->
-	<target name="pdepend-log">
-		<phpdepend>
-			<fileset dir="${basedir}">
-				<include name="**/*.php" />
-				<exclude name="**/vendor/**" />
-			</fileset>
-			<logger type="jdepend-xml" outfile="${builddir}/logs/jdepend.xml"/>
-			<!--<analyzer type="coderank-mode" value="method"/>-->
-		</phpdepend>
+	<target name="phploc" description="Measure project size using PHPLOC">
+		<exec executable="phploc">
+			<arg value="--log-csv" />
+			<arg value="${basedir}/build/logs/phploc.csv" />
+			<arg path="${basedir}/src" />
+		</exec>
 	</target>
 
-	<!-- Run PHP CodeBrowser and generate output -->
-	<target name="phpcb-log">
-		<exec command="phpcb --exclude=${builddir}/** --log=${builddir}/logs --source=${basedir} --output=${builddir}/code-browser"  passthru="true"/>
+	<target name="pdepend" description="Calculate software metrics using PHP_Depend">
+		<exec executable="pdepend">
+			<arg value="--jdepend-xml=${basedir}/build/logs/jdepend.xml" />
+			<arg value="--jdepend-chart=${basedir}/build/pdepend/dependencies.svg" />
+			<arg value="--overview-pyramid=${basedir}/build/pdepend/overview-pyramid.svg" />
+			<arg path="${basedir}/src" />
+		</exec>
 	</target>
 
-	<!-- Build a release .zip -->
-	<target name="dist">
-		<!-- Pick an appropriate dist filename -->
-		<if>
-			<isset property="dist.filename" />
-			<else>
-				<if>
-					<and>
-						<!-- basically - are we running inside hudson? -->
-						<isset property="env.BUILD_NUMBER" />
-						<isset property="env.JOB_NAME" />
-					</and>
-					<then>
-						<property name="dist.filename" value="${env.JOB_NAME}-${env.BUILD_NUMBER}" />
-					</then>
-					<else>
-						<property name="dist.filename" value="kohana" />
-					</else>
-				</if>
-			</else>
-		</if>
-
-		<zip destfile="${builddir}/${dist.filename}.zip" prefix="${dist.filename}/">
-			<fileset dir="${basedir}">
-				<include name="**/**"/>
-				<!-- Build Files -->
-				<exclude name="*.zip" />
-				<exclude name="build/**" />
-				<!-- Dev Files -->
-				<exclude name="build.xml" />
-				<exclude name="phpunit.xml" />
-				<!-- SCM Files -->
-				<exclude name="**/.git/**" />
-				<exclude name="**/.git*" />
-			</fileset>
-		</zip>
+	<target name="phpmd"
+				 description="Perform project mess detection using PHPMD and print human readable output. Intended for usage on the command line before committing.">
+		<exec executable="phpmd">
+			<arg path="${basedir}/application/classes,${basedir}/modules,${basedir}/application/tests" />
+			<arg value="text" />
+			<arg value="${basedir}/build/phpmd.xml" />
+		</exec>
 	</target>
 
-	<!-- Hudson CI target -->
-	<target name="ci" depends="clean">
-		<phingcall target="test-log"/>
-		<phingcall target="pdepend-log"/>
-		<phingcall target="phpmd-log"/>
-		<phingcall target="phpcpd-log"/>
-		<phingcall target="phpcs-log"/>
-		<phingcall target="phpcb-log"/>
+	<target name="phpmd-ci" description="Perform project mess detection using PHPMD creating a log file for the continuous integration server">
+		<exec executable="phpmd">
+			<arg path="${basedir}/application/classes,${basedir}/modules,${basedir}/application/tests" />
+			<arg value="xml" />
+			<arg value="${basedir}/build/phpmd.xml" />
+			<arg value="--reportfile" />
+			<arg value="${basedir}/build/logs/pmd.xml" />
+		</exec>
+	</target>
+
+	<target name="phpcs"
+				 description="Find coding standard violations using PHP_CodeSniffer and print human readable output. Intended for usage on the command line before committing.">
+		<exec executable="phpcs">
+			<arg value="--standard=${basedir}/build/phpcs.xml" />
+			<arg path="${basedir}/application/classes" />
+			<arg path="${basedir}/modules" />
+			<arg path="${basedir}/application/tests" />
+		</exec>
+	</target>
+
+	<target name="phpcs-ci" description="Find coding standard violations using PHP_CodeSniffer creating a log file for the continuous integration server">
+		<exec executable="phpcs" output="/dev/null">
+			<arg value="--report=checkstyle" />
+			<arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
+			<arg value="--standard=${basedir}/build/phpcs.xml" />
+			<arg path="${basedir}/application/classes" />
+			<arg path="${basedir}/modules" />
+			<arg path="${basedir}/application/tests" />
+		</exec>
+	</target>
+
+	<target name="phpcpd" description="Find duplicate code using PHPCPD">
+		<exec executable="phpcpd">
+			<arg value="--log-pmd" />
+			<arg value="${basedir}/build/logs/pmd-cpd.xml" />
+			<arg path="${basedir}/application/classes" />
+			<arg path="${basedir}/modules" />
+			<arg path="${basedir}/application/tests" />
+		</exec>
+	</target>
+
+	<target name="db:structure:load" description="Load database schema for testing">
+		<exec executable="php ${basedir}/kohana" failonerror="true" dir="${basedir}" >
+			<arg value="db:structure:load"/>
+			<arg value="30"/>
+			<arg value="--force"/>
+		</exec>
+	</target>
+
+	<target name="phpunit" description="Run unit tests with PHPUnit" depends="db:structure:load">
+
+		<delete dir="${basedir}/application/cache" />
+		<mkdir dir="${basedir}/application/cache" />
+		<mkdir dir="${basedir}/application/logs" />
+		<mkdir dir="${basedir}/web/upload" />
+
+		<chmod dir="${basedir}/application/cache" type="both" perm="g+w"/>
+		<chmod dir="${basedir}/application/logs" type="both" perm="g+w"/>
+		<chmod dir="${basedir}/web/assets" type="both" perm="g+w"/>
+		
+		<exec executable="phpunit" failonerror="true" dir="${basedir}">
+			<arg line="-c phpunit-coverage.xml" />
+		</exec>
+	</target>
+
+	<target name="phpcb" description="Aggregate tool output with PHP_CodeBrowser">
+		<exec executable="phpcb">
+			<arg value="--log" />
+			<arg path="${basedir}/build/logs" />
+			<arg value="--source" />
+			<arg path="${basedir}/src" />
+			<arg value="--output" />
+			<arg path="${basedir}/build/code-browser" />
+		</exec>
 	</target>
 </project>
