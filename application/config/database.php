@@ -101,7 +101,7 @@ $config =  array(
 			'hostname'   => 'localhost',
 			'database'   => 'sinefy',
 			'username'   => 'sinefy',
-			'password'   => 'QeSI$z84Mdu3oa4',
+			'password'   => 'zS4Z6bhVNhI0Ase',
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',
