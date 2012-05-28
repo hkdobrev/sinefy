@@ -11,19 +11,8 @@ $assets = Assets::factory('body')
 ->js('script.js')
 ->js('sidebar.js')
 ->js('google.js')
-->js('watch.js');
-
-if ($ga_key = Kohana::$config->load('analytics.google.key'))
-{
-    $assets->js_block("
-			var _gaq=[['_setAccount','" . $ga_key . "'],['_trackPageview']];
-			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-			s.parentNode.insertBefore(g,s)}(document,'script'));"
-    );
-}
-
-$assets = $assets->render();
+->js('watch.js')
+->render();
 
 if ($fb_key = Kohana::$config->load('facebook.app_id'))
 {
