@@ -35,4 +35,41 @@ class Command_Movies extends Command_DB {
 		))), Command::OK, "Loading data from ".Debug::path($file)." to ".$db['database']);
 	}
 
+	const IMPORT_BRIEF = 'Import a movie ("--m=") via `id` for Facebook or `name` for TMDB';
+	public function import(Command_Options $options, $movie = NULL)
+	{
+		if ( ! $movie)
+			throw new Kohana_Exception('You must specify a movie!');
+
+		if (is_numeric($movie))
+		{
+			$movie_fb_id = (int) $movie;
+
+			try
+			{
+				$facebook = new Facebook(array(
+					'appId'  => Kohana::$config->load('facebook.app_id'),
+					'secret' => Kohana::$config->load('facebook.app_secret'),
+				));
+
+				// TODO: add load_fb_data method in Model_Movie
+				ORM::factory('movie')
+					->load_fb_data($facebook->api('/'.$movie_fb_id))
+					->save();
+			}
+			catch (FacebookApiException $fb_exception)
+			{
+				Kohana::$log->add(Log::WARNING, 'Facebook movie import failed for '.$movie_fb_id.'!');
+				Kohana::$log->add(Log::ERROR, $fb_exception->getMessage());
+				Kohana::$log->add(Log::STRACE, $fb_exception->getTraceAsString());
+			}
+		}
+		else
+		{
+			$movie_name = $movie;
+			// TODO: TMDB import
+		}
+			
+	}
+
 }
