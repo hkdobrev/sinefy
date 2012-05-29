@@ -103,17 +103,36 @@ Kohana::$config->attach(new Config_File);
  * Enable modules. Modules are referenced by a relative or absolute path.
  */
 Kohana::modules(array(
-	'auth'       => MODPATH.'auth',       // Basic authentication
-	'cache'      => MODPATH.'cache',      // Caching with multiple backends
-	// 'codebench'  => MODPATH.'codebench',  // Benchmarking tool
-	'database'   => MODPATH.'database',   // Database access
-	'image'      => MODPATH.'image',      // Image manipulation
-	'orm'        => MODPATH.'orm',        // Object Relationship Mapping
-	'timestamped-migrations'  => MODPATH.'timestamped-migrations',  // Rails-liek migrations
-	'kohana-cli'  => MODPATH.'kohana-cli',  // User guide and API documentation
-	'asset-merger' => MODPATH.'asset-merger', // Merging assets and stuff
-	'pagination' => MODPATH.'pagination', // Merging assets and stuff
-	));
+
+	/**
+	 * Kohana core modules.
+	 * Some of them are left just for reference.
+	 */
+	
+	// 'auth'       => MODPATH.'core/auth',       // Basic authentication
+	'cache'      => MODPATH.'core/cache',      // Caching with multiple backends
+	// 'codebench'  => MODPATH.'core/codebench',  // Benchmarking tool
+	'database'   => MODPATH.'core/database',   // Database access
+	'image'      => MODPATH.'core/image',      // Image manipulation
+	// 'orm'        => MODPATH.'core/orm',        // Object Relationship Mapping
+	'pagination' => MODPATH.'core/pagination', // Merging assets and stuff
+
+	/**
+	 * Modules from OpenBuildings
+	 */
+
+	'jelly' => MODPATH.'openbuildings/jelly', // Jelly/Jerry/Jam ORM - next generation ORM from Ivan Kerin (bow)
+	'jelly-auth' => MODPATH.'openbuildings/jelly-auth', // Authentication for Jelly users. Support auth services like Facebook or Twitter
+	'http-resource' => MODPATH.'openbuildings/http-resource', // Resources act as a bridge between models and routes
+	'services-manger' => MODPATH.'openbuildings/services-manger', // Manage services like Google Analytics, Beanstalkd, Facebook and other
+	'timestamped-migrations'  => MODPATH.'opebuildings/timestamped-migrations',  // Rails-like migrations
+	'kohana-cli'  => MODPATH.'opebuildings/kohana-cli',  // User guide and API documentation
+	'asset-merger' => MODPATH.'opebuildings/asset-merger', // Merging assets and stuff
+
+	/**
+	 * Our modules
+	 */
+));
 
 
 switch (Kohana::$environment) {

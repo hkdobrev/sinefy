@@ -1,9 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-if ( ! class_exists('Command_DB'))
-{
-	Kohana::load(Kohana::find_file('command', 'db'));
-}
+require_once Kohana::find_file('command', 'db');
 
 class Command_Movies extends Command_DB {
 
