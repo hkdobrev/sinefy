@@ -1,73 +1,49 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Model_User extends Model_Auth_User {
+class Model_User extends Jelly_Model {
 
-
-	protected $_has_many = array(
-		'user_tokens' => array(
-			'model' => 'user_token'
-		),
-		'movies' => array(
-			'through' => 'movies_users'
-		),
-		'friends' => array(
-			'model' => 'friend'
-		)
-	);
-
-	public function filters()
+	public static function initialize(Jelly_Meta $meta)
 	{
-		return array();
-	}
+		$meta->name_key('username');
 
-	public function rules()
-	{
-		return array(
-			'facebook_id' => array(
-				array('not_empty'),
-				array('numeric'),
-				array(array($this, 'unique'), array('facebook_id', ':value'))
-			),
-			'email' => array(
-				array('not_empty'),
-				array('email'),
-				array(array($this, 'unique'), array('email', ':value')),
-			),
-		);
-	}
+		$meta->behaviors(array(
+			'paranoid'
+		));
 
-	/**
-	 * Tests if a unique key value exists in the database.
-	 *
-	 * @param   mixed    the value to test
-	 * @param   string   field name
-	 * @return  boolean
-	 */
-	public function unique_key_exists($value, $field = NULL)
-	{
-		if ($field === NULL)
-		{
-			// Automatically determine field by looking at the value
-			$field = $this->unique_key($value);
-		}
+		$meta->associations(array(
+			'movies' => Jelly::association('manytomany'),
+			'user_tokens' => Jelly::association('hasmany'),
+			'roles' => Jelly::association('manytomany'),
+		));
 
-		return (bool) DB::select(array('COUNT("*")', 'total_count'))
-			->from($this->_table_name)
-			->where($field, '=', $value)
-			->where($this->_primary_key, '!=', $this->pk())
-			->execute($this->_db)
-			->get('total_count');
-	}
-
-	/**
-	 * Allows a model use both email and username as unique identifiers for login
-	 *
-	 * @param   string  unique value
-	 * @return  string  field name
-	 */
-	public function unique_key($value)
-	{
-		return 'facebook_id';
+		$meta->fields(array(
+			'id' => Jelly::field('primary'),
+			'username' => Jelly::field('string', array(
+				'label' => 'username',
+				'rules' => array(
+					array('not_empty'),
+					array('max_length', array(':value', 32)),
+					array('min_length', array(':value', 3)),
+					array('regex', array(':value', '/^[a-zA-Z0-9\_\-]+$/')),
+				),
+				'unique' => TRUE,
+			)),
+			'email' => Jelly::field('email', array(
+				'label' => 'Email address',
+				'rules' => array(
+					array('not_empty'),
+				),
+				'unique' => TRUE,
+			)),
+			'name' => Jelly::field('name'),
+			'facebook_id' => Jelly::field('facebook'),
+			'last_login' => Jelly::field('timestamp'),
+			'logins' => Jelly::field('integer', array(
+				'default' => 0,
+				'convert_empty' => TRUE,
+				'empty_value' => 0,
+			)),
+		));
 	}
 
 	public function populate_from_facebook($data)
@@ -78,6 +54,46 @@ class Model_User extends Model_Auth_User {
 			'name' => Arr::get($data, 'name'),
 		));
 	}
+
+	/**
+	 * Complete the login for a user by incrementing the logins and saving login timestamp
+	 */
+	public function complete_login()
+	{
+		if ($this->loaded())
+		{
+			// Update the number of logins
+			$this->logins = $this->logins + 1;
+
+			// Set the last login date
+			$this->last_login = time();
+
+			// Save the user
+			$this->save();
+		}
+	}
+
+	public function load_service_values(Auth_Service $service, array $user_data, $create = FALSE)
+	{
+		if ($service->type() == 'facebook')
+		{
+			$this->set(array(
+				'name' => Arr::get($user_data, 'name'),
+				'username' => Arr::get($user_data, 'username')
+			));
+		}
+	}
+
+	public function generate_login_token()
+	{
+		return $this->user_tokens->build()->create_token();
+	}
+	
+	public function has_facebook()
+	{
+		return TRUE;
+	}
+
 }
 
 

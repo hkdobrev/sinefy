@@ -130,8 +130,21 @@ Kohana::modules(array(
 	'asset-merger' => MODPATH.'opebuildings/asset-merger', // Merging assets and stuff
 
 	/**
-	 * Our modules
+	 * Other extension modules
 	 */
+	
+	/**
+	 * Generic modules written by us
+	 */
+	'foursquare' => MODPATH.'extensions/foursquare',
+
+	/**
+	 * Sinefy specific modules
+	 */
+	
+	// 'admin' => MODPATH.'sinefy/admin',
+	// 'api' => MODPATH.'sinefy/api',
+
 ));
 
 
