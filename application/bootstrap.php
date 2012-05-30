@@ -110,24 +110,23 @@ Kohana::modules(array(
 	 */
 	
 	// 'auth'       => MODPATH.'core/auth',       // Basic authentication
-	'cache'      => MODPATH.'core/cache',      // Caching with multiple backends
+	'cache'      => MODPATH.'core/cache',         // Caching with multiple backends
 	// 'codebench'  => MODPATH.'core/codebench',  // Benchmarking tool
-	'database'   => MODPATH.'core/database',   // Database access
-	'image'      => MODPATH.'core/image',      // Image manipulation
+	'database'   => MODPATH.'core/database',      // Database access
+	'image'      => MODPATH.'core/image',         // Image manipulation
 	// 'orm'        => MODPATH.'core/orm',        // Object Relationship Mapping
-	'pagination' => MODPATH.'core/pagination', // Merging assets and stuff
-
+	'pagination' => MODPATH.'core/pagination',    // Pagination math, routes, limit, offset and views
 	/**
 	 * Modules from OpenBuildings
 	 */
 
-	'jelly' => MODPATH.'openbuildings/jelly', // Jelly/Jerry/Jam ORM - next generation ORM from Ivan Kerin (bow)
-	'jelly-auth' => MODPATH.'openbuildings/jelly-auth', // Authentication for Jelly users. Support auth services like Facebook or Twitter
-	'http-resource' => MODPATH.'openbuildings/http-resource', // Resources act as a bridge between models and routes
-	'services-manger' => MODPATH.'openbuildings/services-manger', // Manage services like Google Analytics, Beanstalkd, Facebook and other
+	'jelly'                   => MODPATH.'openbuildings/jelly',                  // Jelly/Jerry/Jam ORM - next generation ORM from Ivan Kerin (bow)
+	'jelly-auth'              => MODPATH.'openbuildings/jelly-auth',             // Authentication for Jelly. Support services like Facebook and Twitter
+	'http-resource'           => MODPATH.'openbuildings/http-resource',          // Resources act as a bridge between models and routes
+	'services-manger'         => MODPATH.'openbuildings/services-manger',        // Manage services like Google Analytics, Beanstalkd, Facebook
 	'timestamped-migrations'  => MODPATH.'opebuildings/timestamped-migrations',  // Rails-like migrations
-	'kohana-cli'  => MODPATH.'opebuildings/kohana-cli',  // User guide and API documentation
-	'asset-merger' => MODPATH.'opebuildings/asset-merger', // Merging assets and stuff
+	'kohana-cli'              => MODPATH.'opebuildings/kohana-cli',              // User guide and API documentation
+	'asset-merger'            => MODPATH.'opebuildings/asset-merger',            // Merging assets and stuff
 
 	/**
 	 * Other extension modules
@@ -136,7 +135,7 @@ Kohana::modules(array(
 	/**
 	 * Generic modules written by us
 	 */
-	'foursquare' => MODPATH.'extensions/foursquare',
+	// 'foursquare' => MODPATH.'extensions/foursquare',
 
 	/**
 	 * Sinefy specific modules
