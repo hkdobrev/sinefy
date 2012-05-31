@@ -5,7 +5,7 @@
  *
  * @package    OpenBuildings/timestamped-migrations
  * @author     Ivan Kerin
- * @copyright  (c) 2011 OpenBuildings Inc.
+ * @copyright  (c) 2011-2012 OpenBuildings Inc.
  * @license    http://creativecommons.org/licenses/by-sa/3.0/legalcode
  */
 abstract class Migration
@@ -64,21 +64,21 @@ abstract class Migration
 		return $this->dry_run;
 	}
 
-	protected function run_driver($title, $method, $args)
+	protected function run_driver($title, $method, $args, $will_return = FALSE)
 	{
 		$this->log("-- ".($this->dry_run ? "[dry-run]" : '')."$title");
 		$start = microtime(TRUE);
 
 		if ( ! $this->dry_run)
 		{
-			call_user_func_array(array($this->driver, $method), $args);
+			$return = call_user_func_array(array($this->driver, $method), $args);
 		}
 		$end = microtime(TRUE);
 		$this->log('   --> '.number_format($end-$start, 4).'s');
-		return $this;
+		return $will_return ? $return : $this;
 	}
 
-	public function execute($sql, $parmas = NULL)
+	public function execute($sql, $params = NULL)
 	{
 		$args = func_get_args();
 		$display = str_replace("\n", '↵', $sql);
@@ -86,6 +86,16 @@ abstract class Migration
 		$display = Text::limit_chars($display, 60);
 		return $this->run_driver("execute( $display )", __FUNCTION__, $args);		
 	}
+
+	public function query($sql, $params = NULL)
+	{
+		$args = func_get_args();
+		$display = str_replace("\n", '↵', $sql);
+		$display = preg_replace("/[\s\t]+/", " ", $display);
+		$display = Text::limit_chars($display, 60);
+		return $this->run_driver("query( $display )", __FUNCTION__, $args, TRUE);		
+	}
+
 
 
 	/**

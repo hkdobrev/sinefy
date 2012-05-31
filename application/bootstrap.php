@@ -109,24 +109,32 @@ Kohana::modules(array(
 	 * Some of them are left just for reference.
 	 */
 	
-	// 'auth'       => MODPATH.'core/auth',       // Basic authentication
+	'auth'       => MODPATH.'core/auth',          // Basic authentication
 	'cache'      => MODPATH.'core/cache',         // Caching with multiple backends
-	// 'codebench'  => MODPATH.'core/codebench',  // Benchmarking tool
+	// 'codebench'  => MODPATH.'core/codebench',    // Benchmarking tool
 	'database'   => MODPATH.'core/database',      // Database access
 	'image'      => MODPATH.'core/image',         // Image manipulation
-	// 'orm'        => MODPATH.'core/orm',        // Object Relationship Mapping
+	// 'orm'        => MODPATH.'core/orm',          // Object Relationship Mapping
 	'pagination' => MODPATH.'core/pagination',    // Pagination math, routes, limit, offset and views
+	// 'unittest' => MODPATH.'unittest',          // Unit testing
+	
 	/**
 	 * Modules from OpenBuildings
 	 */
 
-	'jelly'                   => MODPATH.'openbuildings/jelly',                  // Jelly/Jerry/Jam ORM - next generation ORM from Ivan Kerin (bow)
-	'jelly-auth'              => MODPATH.'openbuildings/jelly-auth',             // Authentication for Jelly. Support services like Facebook and Twitter
-	'http-resource'           => MODPATH.'openbuildings/http-resource',          // Resources act as a bridge between models and routes
-	'services-manger'         => MODPATH.'openbuildings/services-manger',        // Manage services like Google Analytics, Beanstalkd, Facebook
-	'timestamped-migrations'  => MODPATH.'opebuildings/timestamped-migrations',  // Rails-like migrations
-	'kohana-cli'              => MODPATH.'opebuildings/kohana-cli',              // User guide and API documentation
-	'asset-merger'            => MODPATH.'opebuildings/asset-merger',            // Merging assets and stuff
+	'jam'                     => MODPATH.'openbuildings/jam',                        // Jam ORM - next generation ORM from Ivan Kerin (bow)
+	'jam-auth'                => MODPATH.'openbuildings/jam-auth',                   // Authentication for Jam. Support services like Facebook and Twitter
+	'jam-taxonomy'            => MODPATH.'openbuildings/jam-taxonomy',               // Taxonomy terms and vocabularies for Jam
+	'http-resource'           => MODPATH.'openbuildings/http-resource',              // Resources act as a bridge between models and routes
+	'services-manger'         => MODPATH.'openbuildings/services-manager',           // Manage services like Google Analytics, Beanstalkd, Facebook
+	'asset-merger'            => MODPATH.'openbuildings/asset-merger',               // Merging assets and stuff
+
+	// Used for tests
+	// 'jamaker'                 => MODPATH.'openbuildings/jamaker'                    // Nifty tool for building and creating Jam objects
+
+	// Used through the command line
+	// 'timestamped-migrations'  => MODPATH.'openbuildings/timestamped-migrations',    // Rails-like migrations
+	// 'kohana-cli'              => MODPATH.'openbuildings/kohana-cli',                // User guide and API documentation
 
 	/**
 	 * Other extension modules
@@ -141,10 +149,36 @@ Kohana::modules(array(
 	 * Sinefy specific modules
 	 */
 	
-	// 'admin' => MODPATH.'sinefy/admin',
-	// 'api' => MODPATH.'sinefy/api',
+	// 'sinefy' => MODPATH.'sinefy/sinefy',
+	// 'admin'  => MODPATH.'sinefy/admin',
+	// 'api'    => MODPATH.'sinefy/api',
 
 ));
+
+if (Kohana::$is_cli)
+{
+	// Modules loaded only when in CLI mode
+	Kohana::modules(Kohana::modules() + array(
+		'timestamped-migrations' => MODPATH.'openbuildings/timestamped-migrations',
+		'kohana-cli'             => MODPATH.'openbuildings/kohana-cli',
+	));
+}
+elseif (strpos($_SERVER['REQUEST_URI'], '/admin') === 0)
+{
+	Kohana::modules(Kohana::modules() + array(
+		'admin' => MODPATH.'sinefy/admin',
+	));
+}
+else
+{
+	Kohana::modules(Kohana::modules() + array(
+		'sinefy' => MODPATH.'sinefy/sinefy',
+	));
+}
+
+Cookie::$salt = 'r9DMXL5b12bRy3T';
+Session::$default = 'native';
+HTML::$windowed_urls = TRUE;
 
 
 switch (Kohana::$environment) {
@@ -162,50 +196,4 @@ switch (Kohana::$environment) {
 	break;
 }
 
-
-/**
- * Set the routes. Each route must have a minimum of a name, a URI and a set of
- * defaults for the URI.
- */
-
-/**
- * Shortcuts for login/logout/signup
- */
-Route::set('login', 'login')
-	->defaults(array(
-		'controller' => 'session',
-		'action' => 'new'
-	));
-
-Route::set('logout', 'logout')
-	->defaults(array(
-		'controller' => 'session',
-		'action' => 'delete'
-	));
-
-Route::set('home', '(<page>)', array(
-	'page' => '[1-9][0-9]*'
-))
-	->defaults(array(
-		'controller' => 'home',
-		'action' => 'index',
-		'page'		 =>	'1'
-	));
-
-Route::set('watched', 'movie/watched')
-	->defaults(array(
-		'controller' => 'movie',
-		'action' => 'watched'
-	));
-
-Route::set('to_watch', 'movie/to_watch')
-	->defaults(array(
-		'controller' => 'movie',
-		'action' => 'to_watch'
-	));
-
-Route::set('default', '(<controller>(/<action>(/<id>)))')
-	->defaults(array(
-		'controller' => 'home',
-		'action'     => 'index'
-	));
+include 'routes.php';

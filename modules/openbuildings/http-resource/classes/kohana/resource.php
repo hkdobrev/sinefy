@@ -352,7 +352,7 @@ class Kohana_Resource {
 
 	/**
 	 * Get the collection query object for the resource
-	 * @return mixed depending on the driver - Jelly_Builder or ORM
+	 * @return mixed depending on the driver - Jam_Builder or ORM
 	 */
 	public function collection()
 	{
@@ -361,7 +361,7 @@ class Kohana_Resource {
 
 	/**
 	 * Get the model object for the resource.
-	 * @return mixed depending on the driver - Jelly_Model or ORM
+	 * @return mixed depending on the driver - Jam_Model or ORM
 	 */
 	public function object()
 	{
@@ -370,7 +370,7 @@ class Kohana_Resource {
 
 	/**
 	 * Get the model object for the parent resource of the resource.
-	 * @return mixed depending on the driver - Jelly_Model or ORM
+	 * @return mixed depending on the driver - Jam_Model or ORM
 	 */
 	public function parent_object()
 	{

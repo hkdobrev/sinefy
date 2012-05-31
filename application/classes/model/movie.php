@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Model_Movie extends Jelly_Model {
+class Model_Movie extends Jam_Model {
 
-	public static function initialize(Jelly_Meta $meta)
+	public static function initialize(Jam_Meta $meta)
 	{
 		$meta->name_key('name');
 
@@ -11,13 +11,13 @@ class Model_Movie extends Jelly_Model {
 		));
 
 		$meta->associations(array(
-			'users' => Jelly::association('manytomany'),
-			'studio' => Jelly::association('belongsto'),
+			'users' => Jam::association('manytomany'),
+			'studio' => Jam::association('belongsto'),
 		));
 
 		$meta->fields(array(
-			'id' => Jelly::field('primary'),
-			'name' => Jelly::field('string', array(
+			'id' => Jam::field('primary'),
+			'name' => Jam::field('string', array(
 				'rules' => array(
 					array('not_empty'),
 				),
@@ -25,16 +25,16 @@ class Model_Movie extends Jelly_Model {
 					array('trim')
 				)
 			)),
-			'about' => Jelly::field('description'),
-			'release_date' => Jelly::field('timestamp', array('format' => 'Y-m-d')),
-			'facebook_likes' => Jelly::field('integer'),
+			'about' => Jam::field('description'),
+			'release_date' => Jam::field('timestamp', array('format' => 'Y-m-d')),
+			'facebook_likes' => Jam::field('integer'),
 
-			'facebook' => Jelly::field('facebook', array('unique' => TRUE)),
-			'youtube' => Jelly::field('youtube'),
-			'imdb' => Jelly::field('imdb_movie'),
+			'facebook' => Jam::field('facebook', array('unique' => TRUE)),
+			'youtube' => Jam::field('youtube'),
+			'imdb' => Jam::field('imdb_movie'),
 
-			'created_at' => Jelly::field('timestamp', array('format' => 'Y-m-d H:i:s', 'auto_now_create' => TRUE)),
-			'updated_at' => Jelly::field('timestamp', array('format' => 'Y-m-d H:i:s', 'auto_now_update' => TRUE)),
+			'created_at' => Jam::field('timestamp', array('format' => 'Y-m-d H:i:s', 'auto_now_create' => TRUE)),
+			'updated_at' => Jam::field('timestamp', array('format' => 'Y-m-d H:i:s', 'auto_now_update' => TRUE)),
 		));
 	}
 

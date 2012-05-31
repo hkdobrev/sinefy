@@ -1,33 +1,5 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-$fb_app_id = '';
-$fb_app_secret = '';
-$fb_namespace = '';
-
-switch (Kohana::$environment)
-{
-	case Kohana::DEVELOPMENT:
-		$fb_app_id = '295857830509277';
-		$fb_app_secret = '7aa179f5677b6b66d51ed87d10d9c568';
-		$fb_namespace = 'sinefydev';
-	break;
-	case Kohana::TESTING:
-		$fb_app_id = '419273394771509';
-		$fb_app_secret = 'cea0bfa0f987205f899c8ffb3370a449';
-		$fb_namespace = 'sinefytest';
-	break;
-	case Kohana::STAGING:
-		$fb_app_id = '438826606127748';
-		$fb_app_secret = 'f71eb6764e5ec34305cde73a4a08d580';
-		$fb_namespace = 'sinefystaging';
-	break;
-	case Kohana::PRODUCTION:
-		$fb_app_id = '144726088994575';
-		$fb_app_secret = 'df05d63d0b12cb642233a3e4995bd5c9';
-		$fb_namespace = 'sinefyapp';
-	break;
-}
-
 return array(
 	'services' => array(
 		
@@ -41,11 +13,38 @@ return array(
 		
 		'facebook' => array(
 			'enabled' => TRUE,
-			'auth' => array(
-				'appId' => $fb_app_id,
-				'secret' => $fb_app_secret,
-			),
-			'namespace' => $fb_namespace,
+			'auth' => Arr::get(array(
+				Kohana::PRODUCTION => array(
+					'appId' => '144726088994575',
+					'secret' => 'df05d63d0b12cb642233a3e4995bd5c9'
+				),
+				Kohana::STAGING => array(
+					'appId' => '438826606127748',
+					'secret' => 'f71eb6764e5ec34305cde73a4a08d580'
+				),
+				Kohana::TESTING => array(
+					'appId' => '419273394771509',
+					'secret' => 'cea0bfa0f987205f899c8ffb3370a449'
+				),
+				Kohana::DEVELOPMENT => array(
+					'appId' => '295857830509277',
+					'secret' => '7aa179f5677b6b66d51ed87d10d9c568'
+				),
+			), Kohana::$environment),
+			'namespace' => Arr::get(array(
+				Kohana::PRODUCTION => array(
+					'namespace' => 'sinefyapp',
+				),
+				Kohana::STAGING => array(
+					'namespace' => 'sinefystaging',
+				),
+				Kohana::TESTING => array(
+					'namespace' => 'sinefytest',
+				),
+				Kohana::DEVELOPMENT => array(
+					'namespace' => 'sinefydev',
+				),
+			), Kohana::$environment),
 			'scope' => 'email,user_likes,friends_likes',
 			'og_enabled' => FALSE,
 			'jssdk' => array(

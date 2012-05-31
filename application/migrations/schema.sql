@@ -26,7 +26,6 @@ CREATE TABLE `movies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `about` text,
-  `image` varchar(255) DEFAULT 'default_image.png',
   `actors` varchar(255) NOT NULL,
   `release_date` timestamp NULL DEFAULT NULL,
   `directed_by` varchar(255) DEFAULT NULL,

@@ -2,7 +2,7 @@
 
 return array(
 	'key' => 'id',
-	'driver' => '', // available drivers: orm, jelly
+	'driver' => '', // available drivers: orm, jam
 	'default_type' => 'multiple', // multiple or singular
 	'format' => 'html', // set to FALSE if you don't want different formats included in the routes
 	'formats' => array(

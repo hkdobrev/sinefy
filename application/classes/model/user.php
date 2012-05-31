@@ -1,8 +1,8 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Model_User extends Jelly_Model {
+class Model_User extends Jam_Model {
 
-	public static function initialize(Jelly_Meta $meta)
+	public static function initialize(Jam_Meta $meta)
 	{
 		$meta->name_key('username');
 
@@ -11,14 +11,14 @@ class Model_User extends Jelly_Model {
 		));
 
 		$meta->associations(array(
-			'movies' => Jelly::association('manytomany'),
-			'user_tokens' => Jelly::association('hasmany'),
-			'roles' => Jelly::association('manytomany'),
+			'movies' => Jam::association('manytomany'),
+			'user_tokens' => Jam::association('hasmany'),
+			'roles' => Jam::association('manytomany'),
 		));
 
 		$meta->fields(array(
-			'id' => Jelly::field('primary'),
-			'username' => Jelly::field('string', array(
+			'id' => Jam::field('primary'),
+			'username' => Jam::field('string', array(
 				'label' => 'username',
 				'rules' => array(
 					array('not_empty'),
@@ -28,17 +28,17 @@ class Model_User extends Jelly_Model {
 				),
 				'unique' => TRUE,
 			)),
-			'email' => Jelly::field('email', array(
+			'email' => Jam::field('email', array(
 				'label' => 'Email address',
 				'rules' => array(
 					array('not_empty'),
 				),
 				'unique' => TRUE,
 			)),
-			'name' => Jelly::field('name'),
-			'facebook_id' => Jelly::field('facebook'),
-			'last_login' => Jelly::field('timestamp'),
-			'logins' => Jelly::field('integer', array(
+			'name' => Jam::field('name'),
+			'facebook_id' => Jam::field('facebook'),
+			'last_login' => Jam::field('timestamp'),
+			'logins' => Jam::field('integer', array(
 				'default' => 0,
 				'convert_empty' => TRUE,
 				'empty_value' => 0,

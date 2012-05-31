@@ -143,7 +143,7 @@ Drivers
 Since the module works with model objects it introduces drivers for the two most used ORM modules for Kohana.
 
  * [ORM](https://github.com/kohana/orm)
- * [Jelly](https://github.com/creatoro/jelly)
+ * [Jam](https://github.com/creatoro/jam)
 
 Each driver implements slugs and basic methods for querying objects and collections.
 
@@ -195,7 +195,7 @@ Configuration
 Global configuration options available in the config file:
 
  * **key** - `id` or `slug` - define if the resource uses slugs or not. More options could be defined in the future. Default: `id`
- * **driver** - the name of the driver to be used. Available drivers: orm, jelly
+ * **driver** - the name of the driver to be used. Available drivers: orm, jam
  * **default_type** - default type for resources: `singular` or `multiple`. Default: `multiple`
  * **format** - the default format to be used. Use FALSE if you don't want formats added to routes. Default: html
  * **formats** - array of available formats. Default: `array('html', 'json', 'jsnop', 'xml', 'js', 'rss')`

@@ -5,7 +5,7 @@
  *
  * @package    OpenBuildings/timestamped-migrations
  * @author     Ivan Kerin
- * @copyright  (c) 2011 OpenBuildings Inc.
+ * @copyright  (c) 2011-2012 OpenBuildings Inc.
  * @license    http://creativecommons.org/licenses/by-sa/3.0/legalcode
 */
 class Migration_Driver_Mysql_Column extends Migration_Driver_Column
@@ -20,8 +20,8 @@ class Migration_Driver_Mysql_Column extends Migration_Driver_Column
 		'string' => array('type' => 'VARCHAR', 'limit' => 255),
 		'text' => array('type' => 'TEXT'),
 		'integer' => array('type' => 'INT'),
-		'long' => array('type' => 'BIGINT'),
 		'float' => array('type' => 'FLOAT', 'limit' => 10, 'precision' => 2),
+		'long' => array('type' => 'BIGINT'),
 		'decimal' => array('type' => 'DECIMAL', 'limit' => 10, 'precision' => 2),
 		'datetime' => array('type' => 'DATETIME'),
 		'timestamp' => array('type' => 'TIMESTAMP'),
@@ -37,9 +37,9 @@ class Migration_Driver_Mysql_Column extends Migration_Driver_Column
 		'VARCHAR' => 'string',
 		'TEXT' => 'text',
 		'INT' => 'integer',
-		'BIGINT' => 'long',
 		'INTEGER' => 'integer',
 		'TINYINT' => 'boolean',
+		'BIGINT' => 'integer',
 		'FLOAT' => 'float',
 		'DECIMAL' => 'decimal',
 		'DATETIME' => 'datetime',

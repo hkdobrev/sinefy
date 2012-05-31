@@ -2,9 +2,10 @@
 
 class Inflector extends Kohana_Inflector {
 
-	public static function humanize($str)
+	public static function humanize($str, $ucwords = FALSE)
 	{
-		return ucwords(parent::humanize($str));
+		$humanized = parent::humanize($str);
+		return $ucwords ? ucwords($humanized) : $humanized;
 	}
 
 }

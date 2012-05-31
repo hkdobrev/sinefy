@@ -36,7 +36,7 @@ abstract class Kohana_Resource_Driver {
 	 * Get the collection for a resource
 	 * If the resource has a parent resource the method should return the child collection regarding the parent limitation.
 	 * @param  Resource $resource The resource for the collection
-	 * @return mixed a collection depending on the driver - Jelly_Collection or ORM
+	 * @return mixed a collection depending on the driver - Jam_Collection or ORM
 	 */
 	public function get_collection($resource, $get_children = TRUE)
 	{
@@ -68,7 +68,7 @@ abstract class Kohana_Resource_Driver {
 	 * Get the object for a resource.
 	 * If the resource has a parent resource the method should return the child object regarding the parent limitation.
 	 * @param  Resource $resource The resource to get the object for
-	 * @return mixed an object depending from the driver configuration; could be ORM or Jelly_Object
+	 * @return mixed an object depending from the driver configuration; could be ORM or Jam_Object
 	 */
 	public function get_object($resource)
 	{
@@ -85,7 +85,7 @@ abstract class Kohana_Resource_Driver {
 
 	/**
 	 * Get the value of the primary field of the object; slug if it's sluggable; primary_key otherwise
-	 * @param  mixed $object Jelly_Model or ORM
+	 * @param  mixed $object Jam_Model or ORM
 	 * @return mixed the slug or the primary_key
 	 */
 	public function get_primary_field($object)
@@ -120,14 +120,14 @@ abstract class Kohana_Resource_Driver {
 
 	/**
 	 * Get the model name for a object
-	 * @param mixed $object could be an instance of Jelly_Model, Jelly_Builder, Jelly_Collection or ORM
+	 * @param mixed $object could be an instance of Jam_Model, Jam_Builder, Jam_Collection or ORM
 	 * @return string
 	 */
 	abstract public function get_model_name($object);
 
 	/**
 	 * Parse an object or a collection and returns the name of the model
-	 * @param  mixed $object a model object depending on the drivers; it could be Jelly_Collection, Jelly_Builder, Jelly_Object, ORM or Database_Result
+	 * @param  mixed $object a model object depending on the drivers; it could be Jam_Collection, Jam_Builder, Jam_Object, ORM or Database_Result
 	 * @param  array $params if the object is loaded it would set id in params to the key of the object
 	 * @return string
 	 */
@@ -135,7 +135,7 @@ abstract class Kohana_Resource_Driver {
 
 	/**
 	 * Return the primary key value for the object provided
-	 * @param  mixed $object the model object regarding the configured driver - ORM or Jelly_Model
+	 * @param  mixed $object the model object regarding the configured driver - ORM or Jam_Model
 	 * @return int|mixed the primary key value
 	 */
 	abstract public function get_primary_key($object);
@@ -143,21 +143,21 @@ abstract class Kohana_Resource_Driver {
 	/**
 	 * Get a collection query for a model
 	 * @param  string $model the model name
-	 * @return mixed Jelly_Builder for Jelly driver and ORM for ORM driver
+	 * @return mixed Jam_Builder for Jam driver and ORM for ORM driver
 	 */
 	abstract public function get_collection_query($model);
 
 	/**
 	 * Get a query for a child field of a model
-	 * @param  mixed $query       the parent query - Jelly_Builder or ORM
+	 * @param  mixed $query       the parent query - Jam_Builder or ORM
 	 * @param  string $child_field the name of the child field
-	 * @return mixed Jelly_Builder or ORM
+	 * @return mixed Jam_Builder or ORM
 	 */
 	abstract public function get_children($query, $child_field);
 
 	/**
 	 * Checks if a model object is using the sluggable behavior
-	 * @param  mixed  $object Jelly_Model or ORM
+	 * @param  mixed  $object Jam_Model or ORM
 	 * @return boolean TRUE if the object implements the sluggable behavior; FALSE otherwise
 	 */
 	abstract public function is_sluggable($object);

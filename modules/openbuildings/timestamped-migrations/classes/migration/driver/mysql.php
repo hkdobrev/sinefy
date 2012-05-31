@@ -6,7 +6,7 @@
  * @package    OpenBuildings/timestamped-migrations
  * @author		 Matías Montes
  * @author     Ivan Kerin
- * @copyright  (c) 2011 OpenBuildings Inc.
+ * @copyright  (c) 2011-2012 OpenBuildings Inc.
  * @license    http://creativecommons.org/licenses/by-sa/3.0/legalcode
  */
 class Migration_Driver_Mysql extends Migration_Driver
@@ -83,6 +83,20 @@ class Migration_Driver_Mysql extends Migration_Driver
 		}
 
 		return $this;
+	}
+
+	public function query($sql, $params = NULL)
+	{
+		try 
+		{
+			$query = $this->pdo->prepare($sql);
+			$query->execute($params);
+			return $query;
+		} 
+		catch (PDOException $e) 
+		{
+			throw new Migration_Exception(":sql\n Exception: :message", array(':sql' => $sql, ":message" => $e->getMessage()));
+		}
 	}
 
 	public function create_table($table_name, $fields, $options = NULL)
