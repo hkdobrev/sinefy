@@ -127,7 +127,7 @@ class Auth_Model_UserTest extends Unittest_Auth_TestCase {
 		Jam::meta('test_user')->add_password_validation();
 		$user = Jam::factory('test_user', 1)->set($params);
 
-		$this->assertEquals($is_valid, $user->check(), "The check should return $is_valid ".print_r($user->errors(), TRUE));
+		$this->assertEquals($is_valid, $user->check(), "The check should return ".($is_valid ? "TRUE" : "FALSE")."\n".print_r($user->errors(), TRUE));
 	}
 
 	public function test_generate_login_token()

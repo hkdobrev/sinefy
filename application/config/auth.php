@@ -1,6 +1,13 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
 return array(
+	'driver'       => 'jam',
+	'hash_method'  => 'sha256',
+	'hash_key'     => 'WhM5%d5&7arJ44s6Dg',
+	'lifetime'     => 1209600,
+	'session_type' => Session::$default,
+	'session_key'  => 'sinefy_auth',
+
 	'services' => array(
 		'facebook' => array(
 			'enabled' => TRUE,
@@ -35,14 +42,15 @@ return array(
 			),
 			'create_user' => FALSE,
 		),
-		'foursqaure' => array(
-			'enabled' => FALSE,
-			// 'back_url' => '/',
-			'auth' => array(
-				'consumer_key' => 'YOUR_CONSUMER_KEY',
-				'consumer_secret' => 'YOUR_CONSUMER_SECRET',
-			),
-			'create_user' => FALSE,
-		)
+		
+		// 'foursqaure' => array(
+		// 	'enabled' => FALSE,
+		// 	// 'back_url' => '/',
+		// 	'auth' => array(
+		// 		'consumer_key' => 'YOUR_CONSUMER_KEY',
+		// 		'consumer_secret' => 'YOUR_CONSUMER_SECRET',
+		// 	),
+		// 	'create_user' => FALSE,
+		// )
 	),
 );

@@ -112,4 +112,4 @@ class Kohana_Model_User extends Jam_Model {
 		return (bool) $this->facebook_uid;
 	}
 
-} // End Auth User Model
+} // End Kohana_Model_User

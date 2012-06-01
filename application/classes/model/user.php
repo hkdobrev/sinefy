@@ -1,13 +1,13 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Model_User extends Jam_Model {
+class Model_User extends Kohana_Model_User {
 
 	public static function initialize(Jam_Meta $meta)
 	{
 		$meta->name_key('username');
 
 		$meta->behaviors(array(
-			'paranoid'
+			'paranoid' => Jam::behavior('paranoid')
 		));
 
 		$meta->associations(array(
@@ -35,7 +35,7 @@ class Model_User extends Jam_Model {
 				),
 				'unique' => TRUE,
 			)),
-			'name' => Jam::field('name'),
+			'name' => Jam::field('string'),
 			'facebook_id' => Jam::field('facebook'),
 			'last_login' => Jam::field('timestamp'),
 			'logins' => Jam::field('integer', array(
@@ -46,54 +46,26 @@ class Model_User extends Jam_Model {
 		));
 	}
 
-	public function populate_from_facebook($data)
-	{
-		return $this->values(array(
-			'facebook_id' => (int) Arr::get($data, 'id'),
-			'email' => Arr::get($data, 'email'),
-			'name' => Arr::get($data, 'name'),
-		));
-	}
-
-	/**
-	 * Complete the login for a user by incrementing the logins and saving login timestamp
-	 */
-	public function complete_login()
-	{
-		if ($this->loaded())
-		{
-			// Update the number of logins
-			$this->logins = $this->logins + 1;
-
-			// Set the last login date
-			$this->last_login = time();
-
-			// Save the user
-			$this->save();
-		}
-	}
-
 	public function load_service_values(Auth_Service $service, array $user_data, $create = FALSE)
 	{
 		if ($service->type() == 'facebook')
 		{
 			$this->set(array(
 				'name' => Arr::get($user_data, 'name'),
-				'username' => Arr::get($user_data, 'username')
+				'username' => Arr::get($user_data, 'username'),
+				'facebook_id' => (int) Arr::get($user_data, 'id'),
+				'email' => Arr::get($user_data, 'email')
 			));
 		}
 	}
 
-	public function generate_login_token()
-	{
-		return $this->user_tokens->build()->create_token();
-	}
-	
 	public function has_facebook()
 	{
 		return TRUE;
 	}
 
+	static public function _add_password_validation(Jam_Meta $meta)
+	{
+
+	}
 }
-
-

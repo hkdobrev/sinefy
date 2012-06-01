@@ -11,7 +11,7 @@ class Jam_Field_Facebook extends Jam_Field_Integer {
 
 	public function initialize($model, $value)
 	{
-		parent::initialize();
+		parent::initialize($model, $value);
 
 		$this->rule('positive');
 		$this->rule('not_empty');

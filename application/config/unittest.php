@@ -21,15 +21,16 @@ return array(
 
 		// If you don't want the Kohana code coverage reports to pollute your app's,
 		// then set this to FALSE
-		'system' => TRUE,
+		'system' => FALSE,
 	),
 
 	// Does what it says on the tin
 	// Blacklisted files won't be included in code coverage reports
 	// If you use a whitelist then the blacklist will be ignored
-	'use_blacklist' => FALSE,
+	'use_blacklist' => TRUE,
 
 	// List of individual files/folders to blacklist
 	'blacklist' => array(
+		MODPATH.'core'
 	),
 );

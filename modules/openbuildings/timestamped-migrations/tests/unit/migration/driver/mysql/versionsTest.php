@@ -6,7 +6,7 @@
  * @group extensions.timestamped-migrations
  * @package Timestamped Migraitons
  */
-class Unit_Migration_Driver_Mysql_VersionsTest extends Unittest_Extra_Database_TestCase {
+class Unit_Migration_Driver_Mysql_VersionsTest extends Unittest_TestCase {
 
 	public function test_versions()
 	{

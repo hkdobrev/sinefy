@@ -6,7 +6,7 @@ class Jam_Field_IMDB extends Jam_Field_Integer {
 
 	public function initialize($model, $value)
 	{
-		parent::initialize();
+		parent::initialize($model, $value);
 
 		$this->rule('positive');
 	}

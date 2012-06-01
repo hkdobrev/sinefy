@@ -7,7 +7,7 @@ class Model_Movie extends Jam_Model {
 		$meta->name_key('name');
 
 		$meta->behaviors(array(
-			'paranoid'
+			'paranoid' => Jam::behavior('paranoid')
 		));
 
 		$meta->associations(array(

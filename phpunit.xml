@@ -4,4 +4,9 @@
 			<file>modules/unittest/tests.php</file>
 		</testsuite>
 	</testsuites>
+	<filter>
+		<blacklist>
+			<directory>modules/core</directory>
+		</blacklist>
+	</filter>
 </phpunit>
