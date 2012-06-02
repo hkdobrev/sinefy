@@ -1,5 +1,4 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
-
 /**
  * Handles has one to relationships
  *

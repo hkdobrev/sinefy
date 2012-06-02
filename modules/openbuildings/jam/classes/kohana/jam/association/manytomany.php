@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 /**
- * Handles has one to relationships
+ * Handles many-to-many relationships
  *
  * @package    Jam
  * @category   Associations
@@ -23,7 +23,7 @@ abstract class Kohana_Jam_Association_ManyToMany extends Jam_Association_Collect
 	{
 		if (empty($this->foreign))
 		{
-			$foreign_model = inflector::singular($name);
+			$foreign_model = Inflector::singular($name);
 			$this->foreign = $foreign_model.'.'.Jam::meta($foreign_model)->primary_key();
 		}
 		// Is it model.field?
@@ -110,4 +110,4 @@ abstract class Kohana_Jam_Association_ManyToMany extends Jam_Association_Collect
 		}
 	}
 
-} // End Kohana_Jam_Field_BelongsTo
+} // End Kohana_Jam_Association_ManyToMany

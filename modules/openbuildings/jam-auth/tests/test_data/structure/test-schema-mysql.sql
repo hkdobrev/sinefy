@@ -45,9 +45,9 @@ CREATE TABLE `test_users` (
   UNIQUE KEY `uniq_email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
--- ALTER TABLE `test_roles_users`
---   ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`test_user_id`) REFERENCES `test_users` (`id`) ON DELETE CASCADE,
---   ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`test_role_id`) REFERENCES `test_roles` (`id`) ON DELETE CASCADE;
+ALTER TABLE `test_roles_users`
+  ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`test_user_id`) REFERENCES `test_users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`test_role_id`) REFERENCES `test_roles` (`id`) ON DELETE CASCADE;
 
--- ALTER TABLE `test_user_tokens`
---   ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`test_user_id`) REFERENCES `test_users` (`id`) ON DELETE CASCADE;
+ALTER TABLE `test_user_tokens`
+  ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`test_user_id`) REFERENCES `test_users` (`id`) ON DELETE CASCADE;

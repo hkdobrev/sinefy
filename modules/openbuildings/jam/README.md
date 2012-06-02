@@ -1,6 +1,6 @@
-Jam is a small ORM for Kohana 3.2+ that builds on top of Jam - the project was originally started by [Jonathan Geiger](http://jonathan-geiger.com/) and co-developed by [Paul Banks](http://blog.banksdesigns.co.uk/).
+Jam is a small ORM for Kohana 3.2+ that builds on top of Jelly - the project was originally started by [Jonathan Geiger](http://jonathan-geiger.com/) and co-developed by [Paul Banks](http://blog.banksdesigns.co.uk/).
 
-Jam adds some much needed features to Jam project, 
+Jam adds some much needed features to Jelly project, 
 
 * Lazy loading of collections
 * Modifying Collections on the fly and saving the changes
@@ -17,7 +17,7 @@ Jam adds some much needed features to Jam project,
 * Updated files to the Kohana convention (inside kohana directory)
 * Versitile form builder with automattic error display
 
-As the original Jam had a lot of great but undocumented functionality This guide will try to write about both about the new features and the hidden gems of Jam, as a more comprehensive guide.
+As the original Jelly had a lot of great but undocumented functionality This guide will try to write about both about the new features and the hidden gems of Jelly, as a more comprehensive guide.
 
 --------
 

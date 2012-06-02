@@ -1,7 +1,3 @@
-<?php defined('SYSPATH') OR die('No direct access allowed.');
+<?php defined('SYSPATH') OR die('No direct script access.');
 
-class Model_User_Token extends Kohana_Model_User_Token {
-
-	// This class can be replaced or extended
-
-} // End User Token Model
+class Model_User_Token extends Model_Auth_User_Token {}

@@ -93,6 +93,8 @@ abstract class Kohana_Jam_Model extends Model {
 		// Load the object's meta data for quick access
 		$this->_meta = Jam::meta($meta_name);
 
+		$this->_meta->events()->trigger('model.before_construct', $this);
+
 		// Copy over the defaults into the original data.
 		$this->_original = $this->_meta->defaults();
 
@@ -109,6 +111,8 @@ abstract class Kohana_Jam_Model extends Model {
 				$this->load_values($result);
 			}
 		}
+
+		$this->_meta->events()->trigger('model.after_construct', $this);
 	}
 
 	/**
@@ -690,7 +694,6 @@ abstract class Kohana_Jam_Model extends Model {
 		{
 			return $this;
 		}
-		
 		$event_type = $key ? 'update' : 'create';
 		
 		if ($this->_meta->events()->trigger('model.before_'.$event_type, $this) === FALSE)
@@ -776,6 +779,7 @@ abstract class Kohana_Jam_Model extends Model {
 		{			
 			$association->after_save($this, Arr::get($this->_changed, $name), (bool) isset($this->_changed[$name]));
 		}
+
 		// Set the changed data back as original
 		$this->_original = array_merge($this->_original, $this->_changed);
 
