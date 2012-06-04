@@ -87,9 +87,9 @@ abstract class Kohana_Auth_Service {
 
 			if ( ! $user->loaded())
 			{
-				if (isset($data['email']))
+				if (($email = Arr::get($data, 'email')) AND Arr::get($this->_config, 'check_email'))
 				{
-					$user = Jam::query($this->_user_model)->where('email', '=', $data['email'])->find();
+					$user = Jam::query($this->_user_model)->where('email', '=', $email)->find();
 				}
 				elseif ( ! (Arr::get($this->_config, 'create_user') AND $user = $this->build_user($data, TRUE)))
 				{

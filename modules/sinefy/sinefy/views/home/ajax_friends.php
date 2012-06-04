@@ -14,6 +14,7 @@
             ?>
         <?php endforeach ?>
     </div>
+    <?php /*
     <div class="movieLinks" style="float: left; width: 200px;">
         <ul style="list-style-type: none">
             <li style="margin-bottom: 20px;"><a class="btn btn-large" href='http://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dmovies-tv&field-keywords=<?php echo $_GET['movie_title']; ?>'>Buy DVD/Blu-Ray</a></li>
@@ -21,7 +22,5 @@
             <li style="margin-bottom: 20px;"><a class="btn btn-large" href='#' onclick="javascript:showMap();">Buy tickets</a></li>
         </ul>
     </div>
-</div>
-<div id="ajaxMap">
-    
+    */ ?>
 </div>

@@ -5,11 +5,11 @@
 		<?php if ($current_user AND $current_user->loaded()): ?> 
 			<ul id="posters">
 				<?php
-				$movies_users = $movies_users->find_all();
+				$movies_users = $movies_users->select_all();
 				$friends_counter = 0;
 				$movies_with_friends = round($friends_count / 5);
 				foreach ($movies_users as $m => $movies_user): ?>
-					<?php $number_watched = $movies_user->movie->pk() + ($m%2 ? 3 : 5); 
+					<?php $number_watched = $movies_user->movie->id() + ($m%2 ? 3 : 5); 
 						if ($number_watched > 100) {
 						$number_watched = floor($number_watched/100);
 						}
@@ -17,7 +17,7 @@
 						$number_watched = ceil($number_watched/10);
 						}
 
-						$watched_start = $movies_user->movie->pk() * ($m%3 ? 3 : 2);
+						$watched_start = $movies_user->movie->id() * ($m%3 ? 3 : 2);
 
 						if ($watched_start > 1000) {
 						$watched_start = ceil($watched_start / 1000);
@@ -29,7 +29,7 @@
 						}
 
 
-						$number_to_watch = $movies_user->movie->pk() * ($m%3 ? 3 : 2);
+						$number_to_watch = $movies_user->movie->id() * ($m%3 ? 3 : 2);
 
 						if ($number_to_watch > 1000) {
 						$number_to_watch = floor($number_to_watch /1000);
@@ -41,7 +41,7 @@
 						$number_to_watch = floor($number_to_watch / 10);
 						}
 
-						$to_watch_start = $movies_user->movie->pk() * ($m%6 ? 1 : 4);
+						$to_watch_start = $movies_user->movie->id() * ($m%6 ? 1 : 4);
 						if ($to_watch_start > 1000) {
 						$to_watch_start =  floor($to_watch_start / 1000);
 						}
@@ -51,7 +51,7 @@
 						}
 				?>
 					<li class="poster">
-						<a class="movie-poster" data-movie="<?php echo $movies_user->movie->pk() ?>">
+						<a class="movie-poster" data-movie="<?php echo $movies_user->movie->id() ?>">
 							<?php echo HTML::image('https://graph.facebook.com/' . $movies_user->movie->facebook_id . '/picture?type=large') ?>
 							<span class="hidden movie-name" id="movie-name-<?php echo $movies_user->movie->id; ?>"><?php echo $movies_user->movie->name; ?></span>
 						</a>
@@ -90,14 +90,14 @@
 				foreach ($movies_users->rewind() as $movies_user):
 					$movie = $movies_user->movie;
 					?>
-					<div id="movie-<?php echo $movie->pk() ?>" class="movie-sidebar">
+					<div id="movie-<?php echo $movie->id() ?>" class="movie-sidebar">
 
 						<h2><?php echo $movie->name; ?></h2>
 
 						<a class="thumbnail trailer-btn" href="#myModal" style="margin-top: 20px" data-trailer="<?php echo $movie->name; ?>"><img src="http://static2.cdn.ubi.com/ncsa/battletag/website/reveal/img/screens-preloader.gif" class="trailer-preview" id="movie-trailer-<?php echo $movie->id; ?>" /></a>
 						<p><?php echo $movie->about ? Text::limit_words(strip_tags($movie->about), 50, '.') : ""; ?></p>
 
-						<?php echo Sinefy::actions($movie->pk())?>
+						<?php echo Sinefy::actions($movie->id())?>
 						
 					</div>
 				<?php endforeach ?>

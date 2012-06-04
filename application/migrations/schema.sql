@@ -32,6 +32,7 @@ CREATE TABLE `movies` (
   `studio` varchar(255) DEFAULT NULL,
   `likes` int(11) NOT NULL DEFAULT '0',
   `facebook_id` bigint(20) DEFAULT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_movie` (`facebook_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
@@ -43,11 +44,32 @@ CREATE TABLE `movies_users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `movie_id` int(11) DEFAULT NULL,
-  `wishlist` tinyint(1) NOT NULL DEFAULT '0',
+  `to_watch` tinyint(1) NOT NULL,
   `watched` tinyint(1) NOT NULL DEFAULT '0',
   `ranking` int(11) NOT NULL,
   PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `roles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(32) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_name` (`name`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `roles_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `roles_users` (
+  `user_id` int(10) unsigned NOT NULL,
+  `role_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  KEY `fk_role_id` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `schema_version`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -60,14 +82,16 @@ DROP TABLE IF EXISTS `user_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_tokens` (
-  `id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `user_agent` varchar(255) DEFAULT NULL,
-  `token` varchar(255) DEFAULT NULL,
-  `type` varchar(255) DEFAULT NULL,
-  `created` int(11) DEFAULT NULL,
-  `expires` int(11) DEFAULT NULL,
-  UNIQUE KEY `uniq_token` (`token`)
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) unsigned NOT NULL,
+  `user_agent` varchar(40) NOT NULL,
+  `token` varchar(40) NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `created` int(10) unsigned NOT NULL,
+  `expires` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_token` (`token`),
+  KEY `fk_user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `users`;
@@ -80,6 +104,8 @@ CREATE TABLE `users` (
   `facebook_id` bigint(20) DEFAULT NULL,
   `logins` int(11) DEFAULT NULL,
   `last_login` int(11) DEFAULT NULL,
+  `is_deleted` tinyint(1) NOT NULL,
+  `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_email` (`email`),
   UNIQUE KEY `uniq_fb` (`facebook_id`)

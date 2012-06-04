@@ -21,26 +21,28 @@
 		<?php echo $header;?>
 		<?php echo $content;?>
 	</div> <!-- /container -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
-<script>window.jQuery || document.write('<script src="assets/js/libs/jquery-1.7.2.js"><\/script>')</script>
-<div id="dialog-modal" title="Trailer">
-	<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>
-</div>
-<?php echo View::factory('assets/body')?>
-<script>
-(function( $ ){
-	$(function() {
-		$( "#dialog-modal" ).dialog({
-			height: 460,
-			width: 700,
-			modal: true,
-			autoOpen: false,
-			draggable: false,
-			resizable: false	
+	<div class="hidden">
+		<div id="dialog-modal" title="Trailer">
+			<p>Adding the modal overlay screen makes the dialog look more prominent because it dims out the page content.</p>
+		</div>
+	</div>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+	<script>window.jQuery || document.write('<script src="assets/js/libs/jquery-1.7.2.js"><\/script>')</script>
+	<?php echo View::factory('assets/body')?>
+	<script>
+	(function( $ ){
+		$(function() {
+			$( "#dialog-modal" ).dialog({
+				height: 460,
+				width: 700,
+				modal: true,
+				autoOpen: false,
+				draggable: false,
+				resizable: false	
+			});
 		});
-	});
-}( window.jQuery ));
-</script>
-<?php echo Service::all_bodies()?>
+	}( window.jQuery ));
+	</script>
+	<?php echo Service::all_bodies()?>
 </body>
 </html>

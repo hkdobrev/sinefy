@@ -13,6 +13,7 @@ return array(
 			'enabled' => TRUE,
 			'auto_login' => TRUE,
 			'create_user' => TRUE,
+			'check_email' => FALSE,
 			// 'back_url' => '/',
 			'auth' => Arr::get(array(
 				Kohana::PRODUCTION => array(

@@ -63,10 +63,9 @@ abstract class Kohana_Auth_Service_Facebook extends Auth_Service {
 		}
 	}
 
-
 	public function service_uid()
 	{
 		return $this->api()->getUser();
 	}
 
-} // End Auth Jam
+} // End Kohana_Auth_Service_Facebook

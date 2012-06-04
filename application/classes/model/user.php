@@ -1,6 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct script access.');
 
-class Model_User extends Kohana_Model_User {
+class Model_User extends Model_Auth_User {
 
 	public static function initialize(Jam_Meta $meta)
 	{
@@ -12,6 +12,7 @@ class Model_User extends Kohana_Model_User {
 
 		$meta->associations(array(
 			'movies' => Jam::association('manytomany'),
+			'movies_user' => Jam::association('hasmany'),
 			'user_tokens' => Jam::association('hasmany'),
 			'roles' => Jam::association('manytomany'),
 		));
@@ -53,9 +54,47 @@ class Model_User extends Kohana_Model_User {
 			$this->set(array(
 				'name' => Arr::get($user_data, 'name'),
 				'username' => Arr::get($user_data, 'username'),
-				'facebook_id' => (int) Arr::get($user_data, 'id'),
 				'email' => Arr::get($user_data, 'email')
 			));
+
+			if ($create)
+			{
+				$movies = Service::factory('facebook')->fql(
+					"SELECT 
+						page_id,
+						name,
+						is_community_page,
+						categories,
+						website,
+						release_date,
+						genre,
+						starring,
+						directed_by,
+						awards,
+						studio,
+						plot_outline,
+						produced_by,
+						screenplay_by
+					FROM page
+					WHERE page_id IN (
+						SELECT page_id 
+						FROM page_fan
+						WHERE 
+							type = 'movie'
+							AND (
+								uid IN (
+								SELECT uid1 
+								FROM friend 
+								WHERE uid2=me()
+								)
+								OR uid = me()
+							)
+					)"
+				);
+				echo '<pre>';
+				print_r($movies);
+				die;
+			}
 		}
 	}
 

@@ -56,7 +56,7 @@ var done = false;
 			$.post(form.attr('action'), form.serialize(), function () {
 				if ($.isFunction(window.inviteFriends) && form.find('.to-watch-button').length && form.find('.to-watch-button').hasClass('active'))
 				{
-					window.inviteFriends(form);
+					window.inviteFriends(+form.find('input').val());
 				}
 			});
 			form.find('button').toggleClass('active');

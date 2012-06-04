@@ -272,11 +272,12 @@ abstract class Kohana_Service_Facebook extends Service implements Service_Type_P
 			<script>
 				window.fbAsyncInit = function() { FB.init($options);};
 				(function(d){
-				  var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
-				  js = d.createElement('script'); js.id = id; js.async = true;
-				  js.src = '//connect.facebook.net/en_US/all.js';
-				  d.getElementsByTagName('head')[0].appendChild(js);
-				}(window.document));
+					var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+					if (d.getElementById(id)) {return;}
+					js = d.createElement('script'); js.id = id; js.async = true;
+					js.src = "//connect.facebook.net/en_US/all.js";
+					ref.parentNode.insertBefore(js, ref);
+				}(document));
 			</script>
 BODY;
 	}
