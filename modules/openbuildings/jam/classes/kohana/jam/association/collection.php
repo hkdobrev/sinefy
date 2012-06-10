@@ -56,6 +56,9 @@ abstract class Kohana_Jam_Association_Collection extends Jam_Association {
 
 	public function get(Jam_Model $model)
 	{
+		if ( ! $model->loaded())
+			return $this->set($model, array());
+
 		return $this->builder($model)->select_all()->_parent_association($model, $this);
 	}
 
@@ -92,7 +95,7 @@ abstract class Kohana_Jam_Association_Collection extends Jam_Association {
 				{
 					$validation_errors[] = TRUE;
 				}
-				else
+				elseif ( ! $item->is_validating())
 				{
 					$validation_errors[] = $item->check();
 				}

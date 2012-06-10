@@ -6,7 +6,6 @@ return array(
 			'enabled' => FALSE,
 			'auto_login' => FALSE,
 			'create_user' => TRUE,
-			'check_email' => TRUE,
 			// 'back_url' => '/',
 			'auth' => array(
 				'appId' => '',

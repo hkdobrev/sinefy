@@ -125,7 +125,7 @@ Kohana::modules(array(
 	'jam'                     => MODPATH.'openbuildings/jam',                        // Jam ORM - next generation ORM from Ivan Kerin (bow)
 	'jam-auth'                => MODPATH.'openbuildings/jam-auth',                   // Authentication for Jam. Support services like Facebook and Twitter
 	'jam-taxonomy'            => MODPATH.'openbuildings/jam-taxonomy',               // Taxonomy terms and vocabularies for Jam
-	'http-resource'           => MODPATH.'openbuildings/http-resource',              // Resources act as a bridge between models and routes
+	'jam-resource'            => MODPATH.'openbuildings/jam-resource',               // Resources act as a bridge between models and routes
 	'services-manger'         => MODPATH.'openbuildings/services-manager',           // Manage services like Google Analytics, Beanstalkd, Facebook
 	'asset-merger'            => MODPATH.'openbuildings/asset-merger',               // Merging assets and stuff
 

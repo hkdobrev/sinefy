@@ -1,0 +1,91 @@
+#!/usr/bin/php -q
+<?php
+// Allowed arguments & their defaults 
+$runmode = array(
+	"no-daemon" => FALSE, 
+	"help" => FALSE,
+	"write-initd" => FALSE
+);
+
+// Scan command line attributes for allowed arguments
+foreach ($argv as $k => $arg) 
+{
+	if (substr($arg, 0, 2) == "--" AND isset($runmode[substr($arg, 2)])) {
+		$runmode[substr($arg, 2)] = true;
+	}
+}
+
+// Help mode. Shows allowed argumentents and quit directly
+if ($runmode["help"] == TRUE) 
+{
+	echo "Usage: ".$argv[0]." [runmode]\n";
+	echo "Available runmodes:\n"; 
+	foreach ($runmode as $runmod => $val) 
+	{
+		echo " --".$runmod."\n";
+	}
+	die();
+}
+
+// Make it possible to test in source directory
+// This is for PEAR developers only
+ini_set('include_path', ini_get('include_path').':..');
+
+// DISABLE NOTICES
+error_reporting(E_ALL ^ E_NOTICE);
+
+// Fix session_start
+ini_set('session.use_cookies', '0');
+session_start();
+
+// Include Class
+require_once "System/Daemon.php";
+
+// Setup
+$options = array(
+	"appName" => "facebook",
+	'authorName' => 'Ivan Kerin',
+	'authorEmail' => 'ikerin@gmail.com',
+	"appDir" => dirname(__FILE__),
+	"logLocation" => realpath(dirname(__FILE__).'/../application/logs').'/facebook.log',
+	"appPidLocation" => realpath(dirname(__FILE__).'/pids').'/facebook/facebook.pid',
+	"appDescription" => "Post to facebook through clippings php website",
+	"sysMemoryLimit" => "256M",
+	"appDieOnIdentityCrisis" => FALSE,
+	"appRunAsGID" => "33",
+	"appRunAsUID" => "1000"
+);
+
+System_Daemon::setOptions($options);
+
+
+if ( ! $runmode["no-daemon"]) 
+{
+	System_Daemon::start();
+}
+
+if ($runmode["write-initd"]) 
+{
+	System_Daemon::writeAutoRun();
+}
+
+//LOAD KOHANA
+require_once "bootstrap.php";
+
+if ( ! Request::initial())
+{
+	Request::factory()->protocol('http');
+}
+
+//DAEMON CODE
+while ( ! System_Daemon::isDying()) 
+{
+	Service::factory('beanstalkd')->process_tube('facebook');
+
+	// Relax the system by sleeping for a little bit
+	sleep(1);
+}
+
+// Shut down the daemon nicely
+// This is ignored if the class is actually running in the foreground
+System_Daemon::stop();

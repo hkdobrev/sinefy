@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Clippings" default="build-parallel">
+	<target name="build"
+		 depends="prepare,lint,phpmd,phpcs,phpcpd,phpunit"/>
+
+	<target name="build-parallel"
+		 depends="prepare,lint,tools-parallel,phpunit"/>
+
+	<target name="tools-parallel"
+					 description="Run tools in parallel">
+		<parallel threadCount="2">
+	 		<antcall target="phpmd"/>
+			<antcall target="phpcpd"/>
+			<antcall target="phpcs"/>
+		</parallel>
+	</target>
+
+	<target name="clean" description="Cleanup build artifacts">
+		<delete dir="${basedir}/build/api"/>
+		<delete dir="${basedir}/build/code-browser"/>
+		<delete dir="${basedir}/build/coverage"/>
+		<delete dir="${basedir}/build/logs"/>
+	</target>
+
+	<target name="prepare" depends="clean" description="Prepare for build">
+		<property environment="env" />
+
+		<mkdir dir="${basedir}/application/cache"/>
+		<chmod dir="${basedir}/application/cache" perm="777"/>
+
+		<mkdir dir="${basedir}/application/logs"/>
+		<chmod dir="${basedir}/application/logs" perm="777"/>
+
+		<mkdir dir="${basedir}/build/api"/>
+		<mkdir dir="${basedir}/build/code-browser"/>
+		<mkdir dir="${basedir}/build/coverage"/>
+		<mkdir dir="${basedir}/build/logs"/>
+		<mkdir dir="${basedir}/build/pdepend"/>
+	</target>
+
+	<target name="lint">
+		<apply executable="php" failonerror="true">
+		 <arg value="-l" />
+
+		 <fileset dir="${basedir}/application/classes">
+			<include name="**/*.php" />
+			<modified />
+		 </fileset>
+		 <fileset dir="${basedir}/modules/clippings">
+			<include name="**/*.php" />
+			<modified />
+		 </fileset>
+		</apply>
+	</target>
+
+	<target name="phpmd" description="Perform project mess detection using PHPMD">
+		<exec executable="phpmd">
+		 <arg path="${basedir}/application/classes,${basedir}/modules/clippings" />
+		 <arg value="xml" />
+		 <arg value="codesize,unusedcode,naming,design" />
+		 <arg value="--reportfile" />
+		 <arg value="${basedir}/build/logs/pmd.xml" />
+		</exec>
+	</target>
+
+	<target name="phpcs" description="Find coding standard violations using PHP_CodeSniffer">
+		<touch file="${basedir}/build/logs/checkstyle.xml" />
+		<exec executable="phpcs" output="/dev/null">
+		 <arg value="--report=checkstyle" />
+		 <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
+		 <arg value="--standard=${basedir}/build/PHP/CodeSniffer/Standards/Kohana" />
+		 <arg value="--ignore=*Test.php,*testcase.php" />
+		 <arg path="${basedir}/application/classes" />
+		 <arg path="${basedir}/modules/clippings" />
+		</exec>
+	</target>
+
+	<target name="phpcpd" description="Find duplicate code using PHPCPD">
+		<exec executable="phpcpd">
+		 <arg value="--log-pmd" />
+		 <arg value="${basedir}/build/logs/pmd-cpd.xml" />
+		 <arg path="${basedir}/application/classes" />
+		 <arg path="${basedir}/modules/clippings" />
+		</exec>
+	</target>
+
+	<target name="db:test:load" description="Run migrations for testing">
+		<exec executable="${basedir}/kohana" failonerror="true" dir="${basedir}" >
+			<arg value="db:test:load"/>
+		</exec>
+	</target>
+
+	<target name="clean-selenium-logs" description="Truncate selenium log files">
+		<exec executable=">" failonerror="true" dir="/var/log/selenium" >
+			<arg value="selenium-error.log"/>
+		</exec>
+		<exec executable=">" failonerror="true" dir="/var/log/selenium" >
+			<arg value="selenium-output.log"/>
+		</exec>
+	</target>
+
+	<target name="deploy-staging" description="Deploy the project to the staging">
+    <property name="latest_release" value="/home/clippings/releases/${env.BUILD_ID}"/>
+    <property name="shared_path" value="/home/clippings/shared"/>
+    <property name="current_path" value="/home/clippings/current"/>
+
+    <mkdir dir="${latest_release}" />
+
+    <copy todir="${latest_release}" failonerror="true">
+      <fileset dir="${basedir}" />
+    </copy>
+
+    <exec executable="chmod">
+    	<arg value="-R"/>
+    	<arg value="g+w"/>
+      <arg value="${latest_release}"/>
+    </exec>
+
+    <chmod file="${latest_release}/build/deploy.sh" perm="a+x" />
+    <chmod file="${latest_release}/kohana" perm="a+x" />
+
+    <exec executable="${latest_release}/build/deploy.sh" dir="${latest_release}" failonerror="true" >
+      <arg path="${shared_path}" />
+      <arg path="${latest_release}" />
+    </exec>
+
+    <exec executable="${latest_release}/kohana" failonerror="true" dir="${latest_release}" >
+      <arg value="db:migrate"/>
+    </exec>
+
+    <symlink link="${current_path}" resource="${latest_release}" overwrite="true" />
+  </target>
+
+	<target name="deploy-production" description="Deploy the project to the production">
+		<exec executable="cap" dir="${basedir}" failonerror="true" >
+			<arg value="production" />
+			<arg value="deploy:migrations" />
+		</exec>
+	</target>
+
+	<target name="phpunit" description="Run unit tests with PHPUnit" depends="db:test:load">
+		
+		<delete dir="${basedir}/application/cache" />
+		<mkdir dir="${basedir}/application/cache" />
+		<mkdir dir="${basedir}/application/logs" />
+		<mkdir dir="${basedir}/web/upload" />
+
+		<chmod dir="${basedir}/application/cache" type="both" perm="g+w"/>
+		<chmod dir="${basedir}/application/logs" type="both" perm="g+w"/>
+		<chmod dir="${basedir}/web/assets" type="both" perm="g+w"/>
+				
+		<exec executable="phpunit" failonerror="true" dir="${basedir}">
+			<arg line="-c phpunit-coverage.xml" />
+		</exec>
+	</target>
+
+</project>

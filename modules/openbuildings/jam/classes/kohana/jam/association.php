@@ -156,16 +156,18 @@ abstract class Kohana_Jam_Association {
 	 * This method should perform a check after the parent model is checked
 	 * 
 	 * @param  Jam_Model $model
-	 * @param  mixed $value
+	 * @param  Jam_Validation $validation
+	 * @param  boolean $new_item  is the association new
 	 * @return NULL                   
 	 */
 	public function after_check(Jam_Model $model, Jam_Validation $validation, $new_item)
 	{
-		if ($new_item AND ! $new_item->check())
+		if ($new_item AND ! $new_item->is_validating() AND ! $new_item->check())
 		{
 			$validation->error($this->name, 'validation');
 		}
 	}
+
 	/**
 	 * This method should perform stuff after its saved
 	 * 
@@ -192,7 +194,7 @@ abstract class Kohana_Jam_Association {
 		if ($array instanceof Jam_Model)
 			return $array;
 
-		if ($this->is_polymorphic())
+		if ($this->is_polymorphic() AND ! $this instanceof Jam_Association_HasOne)
 		{
 			if ( ! is_array($array))
 				throw new Kohana_Exception('Model :model, association :name is polymorphic so you can only mass assign arrays', 
@@ -341,7 +343,7 @@ abstract class Kohana_Jam_Association {
 	{
 		if ($this->inverse_of)
 		{
-			$item->retrieved($this->inverse_of, $model);
+			$item->set($this->inverse_of, $model);
 		}
 		return $item;
 	}
@@ -360,4 +362,4 @@ abstract class Kohana_Jam_Association {
 		}
 		return $item;
 	}
-} // End Kohana_Jam_Field
+} // End Kohana_Jam_Association

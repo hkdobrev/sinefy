@@ -129,15 +129,14 @@
 		</exec>
 	</target>
 
-	<target name="db:structure:load" description="Load database schema for testing">
+	<target name="db:test:load" description="Load database schema for testing">
 		<exec executable="php ${basedir}/kohana" failonerror="true" dir="${basedir}" >
-			<arg value="db:structure:load"/>
+			<arg value="db:test:load"/>
 			<arg value="30"/>
-			<arg value="--force"/>
 		</exec>
 	</target>
 
-	<target name="phpunit" description="Run unit tests with PHPUnit" depends="db:structure:load">
+	<target name="phpunit" description="Run unit tests with PHPUnit" depends="db:test:load">
 
 		<delete dir="${basedir}/application/cache" />
 		<mkdir dir="${basedir}/application/cache" />
@@ -163,4 +162,45 @@
 			<arg path="${basedir}/build/code-browser" />
 		</exec>
 	</target>
+
+	<target name="deploy-production" description="Deploy the project to the production">
+		<exec executable="cap" dir="${basedir}" failonerror="true" >
+			<arg value="production" />
+			<arg value="deploy:migrations" />
+		</exec>
+	</target>
+
+	<target name="deploy-staging" description="Deploy the project to the staging">
+		<property name="latest_release" value="/home/clippings/releases/${env.BUILD_ID}"/>
+		<property name="shared_path" value="/home/clippings/shared"/>
+		<property name="current_path" value="/home/clippings/current"/>
+
+		<mkdir dir="${latest_release}" />
+
+		<copy todir="${latest_release}" failonerror="true">
+			<fileset dir="${basedir}" />
+		</copy>
+
+		<exec executable="chmod">
+			<arg value="-R"/>
+			<arg value="g+w"/>
+			<arg value="${latest_release}"/>
+		</exec>
+
+		<chmod file="${latest_release}/build/deploy.sh" perm="a+x" />
+		<chmod file="${latest_release}/kohana" perm="a+x" />
+
+		<exec executable="${latest_release}/build/deploy.sh" dir="${latest_release}" failonerror="true" >
+			<arg path="${shared_path}" />
+			<arg path="${latest_release}" />
+		</exec>
+
+		<exec executable="${latest_release}/kohana" failonerror="true" dir="${latest_release}" >
+			<arg value="db:migrate"/>
+		</exec>
+
+		<symlink link="${current_path}" resource="${latest_release}" overwrite="true" />
+	</target>
+
+
 </project>

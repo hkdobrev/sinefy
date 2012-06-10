@@ -57,7 +57,14 @@ class Jam_Association_BelongsToTest extends Unittest_Jam_TestCase {
 	 */
 	public function test_builder($builder, $loaded)
 	{
-		$builder = Jam::factory($builder[0], $builder[1])->builder($builder[2]);
+		$model = Jam::factory($builder[0], $builder[1]);
+
+		if ( ! $model->loaded() AND $model->meta()->association($builder[2])->is_polymorphic())
+		{
+			$this->setExpectedException('Jam_Exception_NotLoaded');
+		}
+		
+		$builder = $model->builder($builder[2]);
 
 		$this->assertTrue($builder instanceof Jam_Builder, "Must load Jam_Builder object for the association");
 
@@ -239,8 +246,8 @@ class Jam_Association_BelongsToTest extends Unittest_Jam_TestCase {
 
 	public function test_polymorphic_join_association()
 	{
-		$this->markTestAsSkipped('join_association is not implemented for belongs_to association');
-		$this->assertEquals(1, Jam::query('test_image')->join_association('test_holder')->count());
+		$this->setExpectedException('Kohana_Exception');
+		Jam::query('test_image')->join_association('test_holder');
 	}
 
 } // End Jam_Association_BelongsToTest
