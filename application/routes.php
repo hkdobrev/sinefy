@@ -5,20 +5,6 @@
  * defaults for the URI.
  */
 
-/**
- * Shortcuts for login/logout/signup
- */
-Route::set('login', 'login')
-	->defaults(array(
-		'controller' => 'session',
-		'action' => 'new'
-	));
-
-Route::set('logout', 'logout')
-	->defaults(array(
-		'controller' => 'session',
-		'action' => 'delete'
-	));
 
 Route::set('home', '(<page>)', array(
 	'page' => '[1-9][0-9]*'
@@ -29,17 +15,68 @@ Route::set('home', '(<page>)', array(
 		'page'		 =>	'1'
 	));
 
-Route::set('watched', 'movie/watched')
+Route::set('logout', 'logout')
 	->defaults(array(
-		'controller' => 'movie',
-		'action' => 'watched'
+		'controller' => 'session',
+		'action' => 'destroy'
 	));
 
-Route::set('to_watch', 'movie/to_watch')
-	->defaults(array(
-		'controller' => 'movie',
-		'action' => 'to_watch'
-	));
+Resource::set('session', array(
+	'only' => array(
+		// 'new',
+		// 'create',
+		'destroy'
+	),
+	'with' => 'facebook',
+	'model' => FALSE,
+	'singular' => TRUE
+));
+
+Resource::set('users', array(
+	'only' => array(
+		'new',
+		'create',
+		'show'
+	),
+	'movies' => array(
+		'only' => array(
+			'index',
+			'show'
+		)
+	)
+));
+
+Resource::set('me', array(
+	'singular' => TRUE,
+	'model' => 'user',
+	'only' => array(
+		'edit',
+		'update',
+		'destroy'
+	),
+	'movies' => array(
+		'only' => array(
+			'new',
+			'create',
+			'edit',
+			'update',
+			'destroy',
+		)
+	)
+));
+
+Resource::set('movies', array(
+	'only' => array(
+		'index',
+		'show',
+	),
+	'comments' => array(
+		'index',
+		'new',
+		'create',
+		'destroy'
+	)
+));
 
 Route::set('default', '(<controller>(/<action>(/<id>)))')
 	->defaults(array(

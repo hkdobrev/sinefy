@@ -8,9 +8,15 @@ class Controller_Session extends Controller_Layout {
 		$user = Auth::instance()->get_user();
 	}
 
-	public function action_delete()
+	public function action_facebook()
 	{
+		$this->view = FALSE;
+		$user = Auth::instance()->get_user();
+	}
+
+	public function action_destroy()
+	{
+		$this->view = FALSE;
 		Auth::instance()->logout();
-		$this->request->redirect();
 	}
 }

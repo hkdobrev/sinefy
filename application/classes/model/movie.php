@@ -38,21 +38,6 @@ class Model_Movie extends Jam_Model {
 		));
 	}
 
-	public function watched($movie_id)
-	{
-		return (bool) $this->where('watched', '=', '1')
-			->where('movie.id', '=', $movie_id)
-					->count_all();
-	}
-
-	public function wishlist($movie_id)
-	{
-		return (bool) $this
-			->where('wishlist', '=', '1')
-			->where('movie.id', '=', $movie_id)
-					->count_all();
-	}
-
 	public function load_fb_data($data)
 	{
 		$this->set(array(

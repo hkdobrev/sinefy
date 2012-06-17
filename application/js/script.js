@@ -46,17 +46,34 @@ var done = false;
 
 		window.sinefySidebar = function (d) {
 			var data = d[0];
-			console.log(data);
 			data.find('.movie-sidebar').appendTo($('.sidebar'));
 		};
+
+		function inviteFriends( movieId ) {
+			var name = $( "#movie-name-" + movieId ).text();
+
+			$.get( "home/ajax_friends", {
+				'movie_title': name
+			}, function( data ) {
+				$( "#dialog" ).html( data );
+			});
+
+			$( "#dialog" ).dialog({
+				height: 460,
+				width: 700,
+				modal: true,
+				draggable: false,
+				resizable: false,
+				title: 'Watch ' + name + ' with: '
+			});
+		}
 
 		$('.sidebar').on('submit', '.button-form', function(e){
 			e.preventDefault();
 			var form = $(this);
 			$.post(form.attr('action'), form.serialize(), function () {
-				if ($.isFunction(window.inviteFriends) && form.find('.to-watch-button').length && form.find('.to-watch-button').hasClass('active'))
-				{
-					window.inviteFriends(+form.find('input').val());
+				if (form.find('.to-watch-button').length && form.find('.to-watch-button').hasClass('active')) {
+					inviteFriends(+form.find('input').val());
 				}
 			});
 			form.find('button').toggleClass('active');

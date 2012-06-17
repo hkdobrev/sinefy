@@ -7,7 +7,7 @@ class Model_User extends Model_Auth_User {
 		$meta->name_key('username');
 
 		$meta->behaviors(array(
-			'paranoid' => Jam::behavior('paranoid')
+			'paranoid' => Jam::behavior('paranoid'),
 		));
 
 		$meta->associations(array(
@@ -44,6 +44,9 @@ class Model_User extends Model_Auth_User {
 				'convert_empty' => TRUE,
 				'empty_value' => 0,
 			)),
+
+			'created_at' => Jam::field('timestamp', array('auto_now_create' => TRUE, 'format' => 'Y-m-d H:i:s')),
+			'updated_at' => Jam::field('timestamp', array('auto_now_update' => TRUE, 'format' => 'Y-m-d H:i:s')),
 		));
 	}
 
@@ -57,44 +60,44 @@ class Model_User extends Model_Auth_User {
 				'email' => Arr::get($user_data, 'email')
 			));
 
-			if ($create)
-			{
-				$movies = Service::factory('facebook')->fql(
-					"SELECT 
-						page_id,
-						name,
-						is_community_page,
-						categories,
-						website,
-						release_date,
-						genre,
-						starring,
-						directed_by,
-						awards,
-						studio,
-						plot_outline,
-						produced_by,
-						screenplay_by
-					FROM page
-					WHERE page_id IN (
-						SELECT page_id 
-						FROM page_fan
-						WHERE 
-							type = 'movie'
-							AND (
-								uid IN (
-								SELECT uid1 
-								FROM friend 
-								WHERE uid2=me()
-								)
-								OR uid = me()
-							)
-					)"
-				);
-				echo '<pre>';
-				print_r($movies);
-				die;
-			}
+			// if ($create)
+			// {
+			// 	$movies = Service::factory('facebook')->fql(
+			// 		"SELECT 
+			// 			page_id,
+			// 			name,
+			// 			is_community_page,
+			// 			categories,
+			// 			website,
+			// 			release_date,
+			// 			genre,
+			// 			starring,
+			// 			directed_by,
+			// 			awards,
+			// 			studio,
+			// 			plot_outline,
+			// 			produced_by,
+			// 			screenplay_by
+			// 		FROM page
+			// 		WHERE page_id IN (
+			// 			SELECT page_id 
+			// 			FROM page_fan
+			// 			WHERE 
+			// 				type = 'movie'
+			// 				AND (
+			// 					uid IN (
+			// 					SELECT uid1 
+			// 					FROM friend 
+			// 					WHERE uid2=me()
+			// 					)
+			// 					OR uid = me()
+			// 				)
+			// 		)"
+			// 	);
+			// 	echo '<pre>';
+			// 	print_r($movies);
+			// 	die;
+			// }
 		}
 	}
 

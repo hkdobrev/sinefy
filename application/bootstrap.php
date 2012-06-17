@@ -65,10 +65,6 @@ if (isset($_SERVER['KOHANA_ENV']))
 {
 	Kohana::$environment = constant('Kohana::'.strtoupper($_SERVER['KOHANA_ENV']));
 }
-else
-{
-	Kohana::$environment = Kohana::$is_cli ? Kohana::DEVELOPMENT : Kohana::PRODUCTION;
-}
 
 /**
  * Initialize Kohana, setting the default options.
@@ -125,7 +121,6 @@ Kohana::modules(array(
 	'jam'                     => MODPATH.'openbuildings/jam',                        // Jam ORM - next generation ORM from Ivan Kerin (bow)
 	'jam-auth'                => MODPATH.'openbuildings/jam-auth',                   // Authentication for Jam. Support services like Facebook and Twitter
 	'jam-taxonomy'            => MODPATH.'openbuildings/jam-taxonomy',               // Taxonomy terms and vocabularies for Jam
-	'jam-resource'            => MODPATH.'openbuildings/jam-resource',               // Resources act as a bridge between models and routes
 	'services-manger'         => MODPATH.'openbuildings/services-manager',           // Manage services like Google Analytics, Beanstalkd, Facebook
 	'asset-merger'            => MODPATH.'openbuildings/asset-merger',               // Merging assets and stuff
 
@@ -141,9 +136,10 @@ Kohana::modules(array(
 	 */
 	
 	/**
-	 * Generic modules written by us
+	 * Modules written by us
 	 */
-	// 'foursquare' => MODPATH.'extensions/foursquare',
+	'jam-resource' => MODPATH.'extensions/jam-resource',    // Resources act as a bridge between models and routes
+	// 'foursquare'   => MODPATH.'extensions/foursquare',   // Foursquare module for oAuth and REST request
 
 	/**
 	 * Sinefy specific modules
