@@ -1,3 +1,3 @@
-# SocialMovies
+# Sinefy
 
-This projects is all about you watching movies
+<http://sinefy.com>
