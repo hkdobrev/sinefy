@@ -13,7 +13,7 @@
 
 	function loadThumbnail(name, id) {
 		$.ajax({
-			url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(name) + "&alt=json&max-results=30&format=5",
+			url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(name) + "%20movie%20trailer&alt=json&max-results=30&format=5",
 			dataType: "jsonp",
 			success: function (obj) {
 				vid = returnId(obj);
@@ -46,7 +46,7 @@
 		$('#dialog-modal').dialog( "option", "title", name + ' Trailer' );
 
 		$.ajax({
-			url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(name) + "&alt=json&max-results=30&format=5",
+			url: "http://gdata.youtube.com/feeds/api/videos?q=" + escape(name) + "%20movie%20trailer&alt=json&max-results=30&format=5",
 			dataType: "jsonp",
 			success: function (obj) {
 				vid = returnId(obj);
