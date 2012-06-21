@@ -4,9 +4,11 @@ class Service_Facebook extends Kohana_Service_Facebook {
 
 	public function fql($query, $multi = FALSE)
 	{
+		$query_key = $multi ? 'queries' : 'query';
+
 		return $this->api(array(
 			'method' => 'fql.'.($multi ? 'multi' : '').'query',
-			'query' => $query
+			$query_key => $query
 		));
 	}
 

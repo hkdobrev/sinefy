@@ -62,40 +62,40 @@ class Model_User extends Model_Auth_User {
 
 			// if ($create)
 			// {
-			// 	$movies = Service::factory('facebook')->fql(
-			// 		"SELECT 
-			// 			page_id,
-			// 			name,
-			// 			is_community_page,
-			// 			categories,
-			// 			website,
-			// 			release_date,
-			// 			genre,
-			// 			starring,
-			// 			directed_by,
-			// 			awards,
-			// 			studio,
-			// 			plot_outline,
-			// 			produced_by,
-			// 			screenplay_by
-			// 		FROM page
-			// 		WHERE page_id IN (
-			// 			SELECT page_id 
-			// 			FROM page_fan
-			// 			WHERE 
-			// 				type = 'movie'
-			// 				AND (
-			// 					uid IN (
-			// 					SELECT uid1 
-			// 					FROM friend 
-			// 					WHERE uid2=me()
-			// 					)
-			// 					OR uid = me()
-			// 				)
-			// 		)"
-			// 	);
-			// 	echo '<pre>';
-			// 	print_r($movies);
+				$movies = Service::factory('facebook')->fql(
+					"SELECT 
+						page_id,
+						name,
+						is_community_page,
+						categories,
+						website,
+						release_date,
+						genre,
+						starring,
+						directed_by,
+						awards,
+						studio,
+						plot_outline,
+						produced_by,
+						screenplay_by
+					FROM page
+					WHERE page_id IN (
+						SELECT page_id 
+						FROM page_fan
+						WHERE 
+							type = 'movie'
+							AND (
+								uid IN (
+								SELECT uid1 
+								FROM friend 
+								WHERE uid2=me()
+								)
+								OR uid = me()
+							)
+					)"
+				);
+			// 	echo '<pre>'
+			// 	.HTML::chars(print_r($movies, TRUE));
 			// 	die;
 			// }
 		}
@@ -109,5 +109,10 @@ class Model_User extends Model_Auth_User {
 	static public function _add_password_validation(Jam_Meta $meta)
 	{
 
+	}
+
+	public static function import_friends($friends, $user_id)
+	{
+		return count($friends);
 	}
 }

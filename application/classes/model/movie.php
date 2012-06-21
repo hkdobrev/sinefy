@@ -38,6 +38,23 @@ class Model_Movie extends Jam_Model {
 		));
 	}
 
+	public static function import_movies($movies, $user_id = NULL)
+	{
+		if ( ! $user_id)
+		{
+			$movies_ids = array();
+			foreach ($movies as $friend_id => $movie_data)
+			{
+				$movies_ids = Arr::merge($movies_ids, Model_Movie::import_movies(Arr::get($movie_data, 'data'), $friend_id));
+			}
+			return count(array_unique($movies_ids));
+		}
+		else
+		{
+			return Arr::pluck($movies, 'id');
+		}
+	}
+
 	public function load_fb_data($data)
 	{
 		$this->set(array(

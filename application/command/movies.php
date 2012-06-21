@@ -69,4 +69,49 @@ class Command_Movies extends Command_DB {
 			
 	}
 
+	public function fbimport(Command_Options $options, $user_id, $access_token)
+	{
+		$fb = Service::factory('facebook');
+		$fb->access_token($access_token);
+
+		$movie_fields = 'id,name,category,likes,talking_about_count';
+
+		$batch = array(
+			array(
+				'method' => 'GET',
+				'name' => 'get-friends',
+				'relative_url' => 'me/friends'.URL::query(array(
+					'limit' => 5000,
+					'fields' => 'id,name,gender,username,installed'
+				)),
+				'omit_response_on_success' => false,
+			),
+			array(
+				'method' => 'GET',
+				'relative_url' => 'me/movies?limit=5000&fields='.$movie_fields
+			),
+			array(
+				'method' => 'GET',
+				'depends_on' => 'get-friends',
+				'relative_url' => 'movies?limit=5000&ids={result=get-friends:$.data.*.id}&fields='.$movie_fields
+			),
+		);
+
+		$response = $fb->api('?batch='.urlencode(json_encode($batch)), 'POST');
+
+		list($friends, $my_movies, $friends_movies) = $response;
+
+		$friends = Arr::get(json_decode(Arr::get($friends, 'body'), TRUE), 'data');
+		$my_movies = Arr::get(json_decode(Arr::get($my_movies, 'body'), TRUE), 'data');
+		$friends_movies = json_decode(Arr::get($friends_movies, 'body'), TRUE);
+
+		$friends_count = Model_User::import_friends($friends, $user_id);
+		$my_movies_count = Model_Movie::import_movies($my_movies, $user_id);
+		$friends_movies_count = Model_Movie::import_movies($friends_movies);
+
+		Command::log('Number of friends imported: '.$friends_count, Command::OK);
+		Command::log('Number of user movies imported: '.count($my_movies_count), Command::OK);
+		Command::log('Number of friend movies imported: '.$friends_movies_count, Command::OK);
+	}
+
 }
