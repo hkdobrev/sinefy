@@ -56,7 +56,7 @@ return array(
 
 		'beanstalkd' => array(
 			'enabled' => TRUE,
-			'server' => '127.0.0.1',
+			'server' => '0.0.0.0',
 		),
 
 		'googleanalytics' => array(

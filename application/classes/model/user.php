@@ -59,45 +59,7 @@ class Model_User extends Model_Auth_User {
 				'username' => Arr::get($user_data, 'username'),
 				'email' => Arr::get($user_data, 'email')
 			));
-
-			// if ($create)
-			// {
-				$movies = Service::factory('facebook')->fql(
-					"SELECT 
-						page_id,
-						name,
-						is_community_page,
-						categories,
-						website,
-						release_date,
-						genre,
-						starring,
-						directed_by,
-						awards,
-						studio,
-						plot_outline,
-						produced_by,
-						screenplay_by
-					FROM page
-					WHERE page_id IN (
-						SELECT page_id 
-						FROM page_fan
-						WHERE 
-							type = 'movie'
-							AND (
-								uid IN (
-								SELECT uid1 
-								FROM friend 
-								WHERE uid2=me()
-								)
-								OR uid = me()
-							)
-					)"
-				);
-			// 	echo '<pre>'
-			// 	.HTML::chars(print_r($movies, TRUE));
-			// 	die;
-			// }
+			Kohana::$log->add(Log::INFO, 'loaded fb data');
 		}
 	}
 
